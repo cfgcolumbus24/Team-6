@@ -1,6 +1,6 @@
 import React from 'react';
 
-import EventCard from './Components/EventCard'
+import EventCard from '../Components/EventCard'
 
 import { Container, Row, Col } from 'react-bootstrap';
 

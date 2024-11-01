@@ -1,12 +1,18 @@
-import './App.css';
-import EventsPage from './EventsPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Resources from './Pages/Resources';
+import Events from './Pages/Events';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <EventsPage>
-    </EventsPage>
+    <div>
+      <Routes>
+        <Route path="/events" element={<Events />} />
+        <Route path="/resources" element={<Resources />} />
+      </Routes>
+    </div>
   );
 }
 
