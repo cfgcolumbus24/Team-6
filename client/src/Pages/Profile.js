@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Container, Row, Col, Card, Button, Image, ListGroup, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from '../Components/Header';
+import Chatbot from './Chatbot';
 
 const Profile = () => {
     const [profileData, setProfileData] = useState(null);
@@ -72,7 +72,6 @@ const Profile = () => {
 
     return (
         <Container className="mt-5">
-            <Header />
             <Row className="justify-content-md-center">
                 <Col md={6}>
                     <Card>
@@ -116,14 +115,7 @@ const Profile = () => {
                                                 onChange={handleChange}
                                                 className="mb-2"
                                             />
-                                            <Form.Control
-                                                type="text"
-                                                placeholder="GitHub URL"
-                                                name="socialMedia.github"
-                                                value={updatedData.socialMedia.github || ''}
-                                                onChange={handleChange}
-                                                className="mb-2"
-                                            />
+                                           
                                             <Form.Control
                                                 type="text"
                                                 placeholder="Twitter URL"
@@ -157,6 +149,7 @@ const Profile = () => {
                     </Card>
                 </Col>
             </Row>
+            <Chatbot />
         </Container>
     );
 };
