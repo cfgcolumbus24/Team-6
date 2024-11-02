@@ -1,15 +1,14 @@
 import React from 'react';
-// import Header from './Header'; 
-// import Footer from './Footer';
-
+import Header from '../Components/Header'; 
+import Footer from '../Components/Footer';
 import Body from '../Components/Body';
 
 function Homepage() {
   return (
     <>
-      {/* <Header />
+      <Header />
       <Body />
-      <Footer /> */}
+      <Footer />
     </>
   );
 }
