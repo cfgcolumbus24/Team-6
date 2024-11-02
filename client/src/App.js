@@ -5,15 +5,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
-import Resources from './Pages/Resources';
-import Events from './Pages/Events';
+import Profile from './Pages/Profile';
+import Directory from './Pages/Directory';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const App = () => (
         <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/resources" element={<Resources />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/directory" element={<Directory />} />
         </Routes>
 );
 
