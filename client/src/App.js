@@ -1,7 +1,9 @@
 // src/App.js
 import React from 'react';
 import Header from './Components/Header';
-import Footer from './Components/Footer';
+import Body from './Components/Body';
+import Footer from './Components/Footer';  // Optional Footer component
+import './App.css';
 
 function App() {
   return (
@@ -9,18 +11,16 @@ function App() {
       {/* Header */}
       <Header />
 
-      {/* Placeholder Main Content */}
+      {/* Main Content - Body */}
       <main className="main-content">
-        <h1>Welcome to Our Application</h1>
-        <p>This is the main content area. More pages will be added here later.</p>
+        <Body />
       </main>
 
-      {/* Footer */}
+      {/* Footer (Optional) */}
       <Footer />
     </div>
   );
 }
 
 export default App;
-
 

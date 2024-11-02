@@ -2,6 +2,7 @@
 import React from 'react';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 
+
 function Header() {
   return (
     <Navbar bg="light" expand="lg" sticky="top" className="py-3 shadow-sm">
@@ -41,17 +42,22 @@ function Header() {
             <Nav.Link href="/directory" className="text-secondary mx-3 fs-5">
               Directory
             </Nav.Link>
+
+            {/* Profile */}
+            <Nav.Link href="/profile" className="text-secondary mx-3 fs-5">
+              Profile
+            </Nav.Link>
           </Nav>
 
-          {/* Authentication and Connect Buttons */}
+          {/* Sleek Authentication Buttons */}
           <Nav className="ms-auto">
-            <Button variant="outline-primary" href="/login" className="mx-2 fs-5">
+            <Button variant="outline-dark" href="/login" className="btn-sleek mx-2 fs-6">
               Log In
             </Button>
-            <Button variant="primary" href="/signup" className="mx-2 fs-5">
+            <Button variant="dark" href="/signup" className="btn-sleek mx-2 fs-6">
               Sign Up
             </Button>
-            <Button variant="success" href="/connect" className="mx-2 fs-5">
+            <Button variant="success" href="/connect" className="btn-sleek mx-2 fs-6">
               Connect
             </Button>
           </Nav>
@@ -62,4 +68,5 @@ function Header() {
 }
 
 export default Header;
+
 
