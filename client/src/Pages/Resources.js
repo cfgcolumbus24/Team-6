@@ -53,6 +53,7 @@ function Resources() {
     try {
       const response = await axios.post("http://localhost:5001/api/resources", newResource);
       setResources([...resources, response.data.data]);
+      setResources(response.data.data.reverse());
       setShowCreateModal(false);
       setNewResource({ resourceTitle: '', resourceAuthor: '', resourceDate: '', resourceContent: '', imageUrl: '' });
     } catch (error) {
@@ -69,7 +70,7 @@ function Resources() {
   return (
     <Container className="my-5">
       <h2 className="text-center mb-4">Resources</h2>
-      <Button className="mb-3" onClick={handleCreateButtonClick}>Create New Resource</Button>
+      <Button className="mb-3" onClick={handleCreateButtonClick}>+ Create New Resource</Button>
       <Form.Control
         type="text"
         placeholder="Search by title..."

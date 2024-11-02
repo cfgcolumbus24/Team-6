@@ -39,6 +39,7 @@ function Events() {
     const fetchEvents = async () => {
       try {
         const response = await axios.get('http://localhost:5001/api/events');
+        setEvents(response.data.data.reverse());
         setEvents(response.data.data);
         console.log('Fetched events:', response.data.data);
       } catch (error) {
@@ -68,8 +69,10 @@ function Events() {
 
   return (
     <Container className="my-5">
+      <br />
       <h2 className="text-center mb-4">Upcoming Events</h2>
-      <Button className="mb-3" onClick={handleCreateButtonClick}>Create New Event</Button>
+      
+      <Button className="mb-3" onClick={handleCreateButtonClick}>+ Create New Event</Button>
       <Form.Group controlId="searchTitle" className="mb-4">
         <Form.Label>Search by Title</Form.Label>
         <Form.Control

@@ -40,7 +40,8 @@ function Resource() {
             <Card>
                 <Card.Img variant="top" src={resource.imageUrl || 'https://picsum.photos/300/150'} style={{ maxHeight: '300px', objectFit: 'cover' }} />
                 <Card.Body>
-                    <Card.Title>{resource.resourceTitle}</Card.Title>
+                <Card.Title style={{ fontSize: '2rem', fontWeight: 'bold' }}>{resource.resourceTitle}</Card.Title>
+
                     <Card.Subtitle className="mb-2 text-muted">{resource.resourceDate}</Card.Subtitle>
                     <Card.Subtitle className="mb-2 text-muted">{resource.resourceAuthor}</Card.Subtitle>
                     <Card.Text>
