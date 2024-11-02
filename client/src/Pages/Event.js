@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Card } from 'react-bootstrap';
 import axios from 'axios';
-import Header from '../Components/Header';
+import Comments from '../Components/Comments'; // Adjust the import path as needed
 
 function Event() {
   const { id } = useParams();
@@ -45,6 +45,7 @@ function Event() {
           <Card.Text>{event.eventDescription}</Card.Text>
         </Card.Body>
       </Card>
+      <Comments eventId={event._id} /> {/* Pass the eventId to Comments component */}
     </Container>
   );
 }
