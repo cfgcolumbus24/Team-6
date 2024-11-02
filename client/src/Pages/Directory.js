@@ -4,6 +4,7 @@ import { Table, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../Components/Header';
+import Chatbot from './Chatbot';
 
 const Directory = () => {
     const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Directory = () => {
                     {directoryData.map((user) => (
                         <tr key={user._id}>
                             <td>
-                                <Link to={`/profile/${user._id}`} className="text-decoration-none">
+                                <Link to={`/users/${user._id}`} className="text-decoration-none">
                                     {user.fname} {user.lname}
                                 </Link>
                             </td>
@@ -71,6 +72,8 @@ const Directory = () => {
                     ))}
                 </tbody>
             </Table>
+            {/* Chatbot Component */}
+            <Chatbot />
         </Container>
     );
 };

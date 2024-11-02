@@ -15,6 +15,10 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Directory from './Pages/Directory';
 import Profile from './Pages/Profile';
+import Calendar from './Components/calendar';
+
+import User from './Pages/User';
+
 
 const App = () => (
   <>
@@ -33,10 +37,11 @@ const App = () => (
             <Route path="/directory" element={<Directory />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/users/:userId" element={<User />} />
         </Routes>
     </Router>
     <Footer />
-    </>
+  </>
 );
 
 export default App;

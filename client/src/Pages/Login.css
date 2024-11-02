@@ -1,16 +1,52 @@
 .gradient-bg {
     background: linear-gradient(to right, #4a90e2, #9013fe); /* Blue gradient */
     height: 100vh; /* Full height */
+    width: 100vw; /* Full width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Prevents any unwanted scroll bars */
 }
 
 h2 {
     font-size: 2.5rem; /* Increase the size of the heading */
 }
 
+.signin-box {
+    width: 600px; /* Increase width for a more spacious box */
+    max-width: 90%; /* Responsive maximum width */
+    padding: 40px; /* Add padding for spacing inside the box */
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
 .form-control {
     font-size: 1.2rem; /* Increase the font size of input fields */
+    width: 80%; /* Set input width to 80% of the container */
+    max-width: 500px; /* Maximum width for larger screens */
+    padding: 10px;
+    margin-bottom: 15px; /* Adds spacing between fields */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
 .btn {
     font-size: 1.2rem; /* Increase the button font size */
+    padding: 12px 20px; /* Increase button padding */
+    width: 100%; /* Make the button the full width of the container */
+    max-width: 500px; /* Match the input width */
+    border-radius: 5px;
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+.btn:hover {
+    background-color: #357ABD; /* Darker shade on hover */
+}
+
