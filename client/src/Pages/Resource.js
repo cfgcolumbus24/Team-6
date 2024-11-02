@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Card } from 'react-bootstrap';
+import Header from '../Components/Header';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 
 function Resource() {
     const { id } = useParams();
@@ -36,12 +38,14 @@ function Resource() {
     return (
         <Container className="my-5">
             <Card>
-                <Card.Img variant="top" src={resource.imageUrl || 'https://via.placeholder.com/150'} style={{ maxHeight: '300px', objectFit: 'cover' }} />
+                <Card.Img variant="top" src={resource.imageUrl || 'https://picsum.photos/300/150'} style={{ maxHeight: '300px', objectFit: 'cover' }} />
                 <Card.Body>
                     <Card.Title>{resource.resourceTitle}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{resource.resourceDate}</Card.Subtitle>
                     <Card.Subtitle className="mb-2 text-muted">{resource.resourceAuthor}</Card.Subtitle>
-                    <Card.Text>{resource.resourceContent}</Card.Text>
+                    <Card.Text>
+                        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(resource.resourceContent) }} />
+                    </Card.Text>
                 </Card.Body>
             </Card>
         </Container>
