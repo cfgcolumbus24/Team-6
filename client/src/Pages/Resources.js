@@ -1,43 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import ResourceCard from "../Components/ResourceCard";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import Header from "../Components/Header";
 
-const resources = [
-  {
-    id: 1,
-    title: "React Workshop",
-    date: "2024-11-10",
-    author: "Jacob Parliament",
-    content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-    imageUrl: "https://via.placeholder.com/150",
-  },
-  {
-    id: 2,
-    title: "React Basics",
-    date: "2024-11-15",
-    author: "Jacob Parliament",
-    content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-    imageUrl: "https://via.placeholder.com/150",
-  },
-  {
-    id: 3,
-    title: "JavaScript Deep Dive",
-    date: "2024-12-01",
-    author: "Jacob Parliament",
-    content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-    imageUrl: "https://via.placeholder.com/150",
-  },
-];
-
 function Resources() {
+  const [resources, setResources] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Fetch resources from the backend
+  useEffect(() => {
+    const fetchResources = async () => {
+      try {
+        const response = await axios.get("http://localhost:5001/api/resources");
+        setResources(response.data.data);
+        console.log("Fetched resources:", response.data.data);
+      } catch (error) {
+        console.error("Error fetching resources:", error);
+      }
+    };
+
+    fetchResources();
+  }, []);
+
   const filteredResources = resources.filter((resource) =>
-    resource.title.toLowerCase().includes(searchTerm.toLowerCase())
+    resource.resourceTitle
+      ? resource.resourceTitle.toLowerCase().includes(searchTerm.toLowerCase())
+      : false
   );
 
   return (
@@ -54,14 +43,14 @@ function Resources() {
       {filteredResources.length > 0 ? (
         <Row>
           {filteredResources.map((resource) => (
-            <Col key={resource.id} md={12} className="mb-4">
+            <Col key={resource._id} md={12} className="mb-4">
               <ResourceCard
-                id={resource.id}
-                title={resource.title}
-                date={resource.date}
-                author={resource.author}
-                content={resource.content}
-                imageUrl={resource.imageUrl}
+                id={resource._id}
+                title={resource.resourceTitle}
+                date={resource.resourceDate}
+                author={resource.resourceAuthor}
+                content={resource.resourceContent}
+                imageUrl={resource.imageUrl || "https://via.placeholder.com/150"}
               />
             </Col>
           ))}
@@ -69,7 +58,7 @@ function Resources() {
       ) : (
         <Row>
           <Col>
-            <p className="text-center" style={{ color: 'black', marginTop: '20px' }}>
+            <p className="text-center" style={{ color: "black", marginTop: "20px" }}>
               No results found
             </p>
           </Col>
@@ -80,5 +69,6 @@ function Resources() {
 }
 
 export default Resources;
+
 
 
