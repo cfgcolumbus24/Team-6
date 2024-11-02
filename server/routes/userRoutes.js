@@ -1,7 +1,6 @@
 // server/routes/userRoutes.js
 const express = require('express');
-const { createUser } = require('../controllers/userController');
-const { login, register } = require('../controllers/authController');
+const { login, register } = require('../controllers/userController');
 const { createUser, getAllUsers } = require('../controllers/userController');
 
 const router = express.Router();
@@ -15,4 +14,3 @@ router.post('/login', login);
 router.get('/', getAllUsers);
 
 module.exports = router;
-

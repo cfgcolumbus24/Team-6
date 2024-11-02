@@ -71,9 +71,23 @@ const createUser = async (req, res) => {
     }
 };
 
-const register = async (req, res) => {
-    const { username, email, password, fname, lname, bio, title, image, socialMedia, phoneNumber } = req.body;
 
+const register = async (req, res) => {
+    const {
+        username,
+        email,
+        password,
+        fname,
+        lname,
+        bio,
+        title,
+        image,
+        instagram,
+        facebook,
+        phoneNumber
+    } = req.body;
+
+    // Validate required fields
     if (!username || !email || !password || !fname || !lname || !bio || !title || !phoneNumber) {
         return res.status(400).json({ message: 'Please fill in all required fields.' });
     }
@@ -87,7 +101,7 @@ const register = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Create new user
+        // Create new user with social media fields
         const newUser = new User({
             username,
             email,
@@ -97,16 +111,21 @@ const register = async (req, res) => {
             bio,
             title,
             image,
-            socialMedia,
+            socialMedia: {
+                instagram,
+                facebook
+            },
             phoneNumber
         });
 
-        const savedUser = await newUser.save();
-        res.status(201).json({ message: 'User registered successfully' });
+        await newUser.save();
+        res.status(201).json({ success: true, message: 'User registered successfully' });
     } catch (error) {
         console.error("Registration error:", error);
         res.status(500).json({ message: 'Error registering user' });
     }
+};
+
 
 // Function to get all users
 const getAllUsers = async (req, res) => {
@@ -126,11 +145,6 @@ const getAllUsers = async (req, res) => {
     }
 };
 
-// Export the functions
-module.exports = {
-    createUser,
-    getAllUsers
-};
 
 const login = async (req, res) => {
     const { email, password } = req.body;
@@ -158,4 +172,5 @@ const login = async (req, res) => {
 };
 
 // Export the functions to be used in routes
-module.exports = { createUser, login, register };
+module.exports = { createUser, login, register, getAllUsers };
+
