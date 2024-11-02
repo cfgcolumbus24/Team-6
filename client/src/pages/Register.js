@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Register.css'; // Import custom CSS for styles
 
 const Register = () => {
-    const [formData, setFormData] = useState({ username: '', email: '', password: '' });
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: ''
+    });
 
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -20,18 +26,30 @@ const Register = () => {
     };
 
     return (
-        <Container className="mt-5">
+        <Container className="mt-5 gradient-bg">
             <Row className="justify-content-md-center">
                 <Col md={6}>
-                    <h2 className="text-center">Register</h2>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group controlId="formBasicUsername">
-                            <Form.Label>Username</Form.Label>
+                    <h2 className="text-center text-white">Register</h2>
+                    <Form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow">
+                        <Form.Group controlId="formBasicFirstName">
+                            <Form.Label>First Name</Form.Label>
                             <Form.Control
                                 type="text"
-                                name="username"
-                                placeholder="Enter your username"
-                                value={formData.username}
+                                name="firstName"
+                                placeholder="Enter your first name"
+                                value={formData.firstName}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicLastName">
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="lastName"
+                                placeholder="Enter your last name"
+                                value={formData.lastName}
                                 onChange={handleChange}
                                 required
                             />
