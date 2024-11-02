@@ -2,9 +2,11 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import '../About.css';
+import Header from '../Components/Header';
 
 const About = () => (
     <Container className="about-container py-5">
+        <Header />
         {/* Main Title */}
         <h1 className="text-center mb-5">About LMCC</h1>
 
@@ -22,7 +24,7 @@ const About = () => (
             </Col>
         </Row>
 
-        {/* Mission Statement */}
+
         <Row className="mb-5 text-center justify-content-center">
             <Col md={10}>
                 <Card className="mission-card text-bubble shadow-sm border-0 p-4">
