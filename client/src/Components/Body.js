@@ -2,17 +2,19 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
-
 function Body() {
   return (
     <div className="body-container">
-      {/* Welcome Section */}
-      <Container fluid className="welcome-section text-center py-5">
-        <h1 className="display-4 fw-bold">Welcome to the Alumni Network</h1>
-        <p className="lead">
-          Join a vibrant community of alumni dedicated to making a positive impact. Stay connected, get involved, and continue your journey with us.
-        </p>
-        <Button href="#call-to-action" className="custom-btn mt-3 shadow">Get Involved Today</Button>
+      {/* Welcome Section with Blue Overlay */}
+      <Container fluid className="welcome-section text-center py-5 position-relative">
+        <div className="blue-overlay"></div>
+        <div className="content">
+          <h1 className="display-4 fw-bold text-white">Welcome to the Alumni Network</h1>
+          <p className="lead text-white">
+            Join a vibrant community of alumni dedicated to making a positive impact. Stay connected, get involved, and continue your journey with us.
+          </p>
+          <Button href="#call-to-action" className="custom-btn mt-3 shadow">Get Involved Today</Button>
+        </div>
       </Container>
 
       {/* Alumni Impact Statistics Section */}
@@ -37,25 +39,28 @@ function Body() {
         </Row>
       </Container>
 
-      {/* Testimonials Section */}
-      <Container fluid className="testimonials-section text-center py-5">
-        <h2 className="fw-bold">Alumni Testimonials</h2>
-        <Row className="g-4 mt-4">
-          {[
-            { quote: "Being part of this network has helped me grow both professionally and personally.", name: "Alex Johnson, Class of 2010" },
-            { quote: "The alumni events have reconnected me with friends and mentors. It's been invaluable.", name: "Taylor Smith, Class of 2015" },
-            { quote: "I’ve found so much support and new opportunities within this community.", name: "Jordan Lee, Class of 2018" },
-          ].map((testimonial, index) => (
-            <Col key={index} md={4}>
-              <Card className="testimonial-card shadow-lg border-0 rounded-4">
-                <Card.Body>
-                  <p className="text-muted">"{testimonial.quote}"</p>
-                  <Card.Footer className="text-end text-primary fw-bold">- {testimonial.name}</Card.Footer>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+      {/* Testimonials Section with Blue Overlay */}
+      <Container fluid className="testimonials-section text-center py-5 position-relative">
+        <div className="blue-overlay"></div>
+        <div className="content">
+          <h2 className="fw-bold text-white">Alumni Testimonials</h2>
+          <Row className="g-4 mt-4 justify-content-center">
+            {[
+              { quote: "Being part of this network has helped me grow both professionally and personally.", name: "Alex Johnson, Class of 2010" },
+              { quote: "The alumni events have reconnected me with friends and mentors. It's been invaluable.", name: "Taylor Smith, Class of 2015" },
+              { quote: "I’ve found so much support and new opportunities within this community.", name: "Jordan Lee, Class of 2018" },
+            ].map((testimonial, index) => (
+              <Col key={index} md={4}>
+                <Card className="testimonial-card shadow-lg border-0 rounded-4">
+                  <Card.Body>
+                    <p className="text-muted">"{testimonial.quote}"</p>
+                    <Card.Footer className="text-end text-primary fw-bold">- {testimonial.name}</Card.Footer>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
       </Container>
 
       {/* Featured Alumni Section */}
@@ -64,7 +69,7 @@ function Body() {
         <p className="text-muted mx-auto" style={{ maxWidth: '800px' }}>
           Our alumni are leaders, innovators, and changemakers around the globe. Here are just a few of their inspiring stories.
         </p>
-        <Row className="g-4 mt-4">
+        <Row className="g-4 mt-4 justify-content-center">
           {[
             { name: 'Sarah Patel', role: 'Social Impact Advocate', img: 'https://via.placeholder.com/150' },
             { name: 'James Wong', role: 'Tech Entrepreneur', img: 'https://via.placeholder.com/150' },
