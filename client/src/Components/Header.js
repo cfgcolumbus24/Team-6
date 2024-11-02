@@ -32,9 +32,18 @@ function Header() {
              Resources
            </Nav.Link>
 
+           <Nav.Link href="/directory" className="text-dark mx-3 fs-5">
+             Directory
+           </Nav.Link>
+
            {/* Events */}
            <Nav.Link href="/events" className="text-dark mx-3 fs-5">
              Events
+           </Nav.Link>
+
+            {/* Events */}
+            <Nav.Link href="/directory" className="text-dark mx-3 fs-5">
+             Directory
            </Nav.Link>
 
            {/* Profile */}

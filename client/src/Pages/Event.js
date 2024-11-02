@@ -4,7 +4,6 @@ import { Container, Card } from 'react-bootstrap';
 import axios from 'axios';
 import Header from '../Components/Header';
 
-
 function Event() {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
