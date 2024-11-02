@@ -7,6 +7,7 @@ import Profile from './components/Profile';
 const App = () => (
     <Router>
         <Routes>
+            <Route path="/" element={<Homepage.js />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
