@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ResourceCard from "../Components/ResourceCard";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Modal } from "react-bootstrap";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import Header from "../Components/Header";
 
 function Resources() {
   const [resources, setResources] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [newResource, setNewResource] = useState({
+    resourceTitle: '',
+    resourceAuthor: '',
+    resourceDate: '',
+    resourceContent: '',
+    imageUrl: ''
+  });
 
   // Fetch resources from the backend
   useEffect(() => {
@@ -23,6 +33,17 @@ function Resources() {
     fetchResources();
   }, []);
 
+  const handleCreateResource = async () => {
+    try {
+      const response = await axios.post("http://localhost:5001/api/resources", newResource);
+      setResources([...resources, response.data.data]);
+      setShowCreateModal(false);
+      setNewResource({ resourceTitle: '', resourceAuthor: '', resourceDate: '', resourceContent: '', imageUrl: '' });
+    } catch (error) {
+      console.error("Error creating resource:", error);
+    }
+  };
+
   const filteredResources = resources.filter((resource) =>
     resource.resourceTitle
       ? resource.resourceTitle.toLowerCase().includes(searchTerm.toLowerCase())
@@ -32,6 +53,7 @@ function Resources() {
   return (
     <Container className="my-5">
       <h2 className="text-center mb-4">Resources</h2>
+      <Button className="mb-3" onClick={() => setShowCreateModal(true)}>Create New Resource</Button>
       <Form.Control
         type="text"
         placeholder="Search by title..."
@@ -48,7 +70,6 @@ function Resources() {
                 title={resource.resourceTitle}
                 date={resource.resourceDate}
                 author={resource.resourceAuthor}
-                content={resource.resourceContent}
                 imageUrl={resource.imageUrl || "https://via.placeholder.com/150"}
               />
             </Col>
@@ -63,11 +84,69 @@ function Resources() {
           </Col>
         </Row>
       )}
+
+      {/* Create Resource Modal */}
+      <Modal show={showCreateModal} onHide={() => setShowCreateModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Create New Resource</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="resourceTitle">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter resource title"
+                value={newResource.resourceTitle}
+                onChange={(e) => setNewResource({ ...newResource, resourceTitle: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="resourceAuthor">
+              <Form.Label>Author</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter author name"
+                value={newResource.resourceAuthor}
+                onChange={(e) => setNewResource({ ...newResource, resourceAuthor: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="resourceDate">
+              <Form.Label>Date</Form.Label>
+              <Form.Control
+                type="date"
+                value={newResource.resourceDate}
+                onChange={(e) => setNewResource({ ...newResource, resourceDate: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="resourceContent">
+              <Form.Label>Content</Form.Label>
+              <ReactQuill
+                value={newResource.resourceContent}
+                onChange={(content) => setNewResource({ ...newResource, resourceContent: content })}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="imageUrl">
+              <Form.Label>Image URL</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter image URL"
+                value={newResource.imageUrl}
+                onChange={(e) => setNewResource({ ...newResource, imageUrl: e.target.value })}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowCreateModal(false)}>Cancel</Button>
+          <Button variant="primary" onClick={handleCreateResource}>Create Resource</Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }
 
 export default Resources;
+
 
 
 
