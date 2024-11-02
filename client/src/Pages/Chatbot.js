@@ -1,6 +1,7 @@
 // src/Components/Chatbot.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Chatbot.css';
 
 const Chatbot = () => {
     const [messages, setMessages] = useState([]);
@@ -9,11 +10,9 @@ const Chatbot = () => {
     const sendMessage = async () => {
         if (!input.trim()) return;
 
-        // Add user message to messages list
         setMessages([...messages, { text: input, user: true }]);
         
         try {
-            // Send user input to the chatbot API
             const response = await axios.post('http://localhost:5001/api/chatbot', { message: input });
             setMessages([...messages, { text: input, user: true }, { text: response.data.reply, user: false }]);
         } catch (error) {
@@ -21,7 +20,6 @@ const Chatbot = () => {
             setMessages([...messages, { text: input, user: true }, { text: "I'm having trouble responding right now.", user: false }]);
         }
         
-        // Clear input field
         setInput('');
     };
 
