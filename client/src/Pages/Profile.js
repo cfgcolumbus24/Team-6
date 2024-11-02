@@ -149,7 +149,7 @@ const Profile = () => {
                     </Card>
                 </Col>
             </Row>
-            <Chatbot />
+            {/* <Chatbot /> */}
         </Container>
     );
 };
