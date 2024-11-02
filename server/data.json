@@ -1,0 +1,11 @@
+{
+    "eventImage": "image_url_here",
+    "eventTitle": "Sample Event",
+    "eventDate": "2024-11-01T00:00:00.000Z",
+    "eventTime": "14:00",
+    "eventDescription": "This is a sample event description.",
+    "eventLocation": "Event Hall A",
+    "eventOrganizer": "Organizer Name"
+  }
+
+  
