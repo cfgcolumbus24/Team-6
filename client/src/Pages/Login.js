@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Login.css';
+import './Login.css'; // Import custom CSS for styles
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -17,15 +17,14 @@ const Login = () => {
             const response = await axios.post('http://localhost:5001/api/users/login', formData);
             localStorage.setItem("token", response.data.token);
             alert("Login successful!");
-
-            // Navigate to the profile page with the username
-            navigate(`/`); // Pass username to profile route
+            navigate('/');
         } catch (error) {
             console.error(error);
             alert("Login failed.");
         }
     };
 
+    // Function to navigate to the Register page
     const handleRegister = () => {
         navigate('/register');
     };
