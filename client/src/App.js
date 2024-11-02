@@ -15,7 +15,10 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Directory from './Pages/Directory';
 import Profile from './Pages/Profile';
+import Calendar from './Components/calendar';
+
 import User from './Pages/User';
+
 
 const App = () => (
   <>
@@ -38,7 +41,7 @@ const App = () => (
         </Routes>
     </Router>
     <Footer />
-    </>
+  </>
 );
 
 export default App;
