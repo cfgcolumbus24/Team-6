@@ -1,22 +1,23 @@
+// src/App.js
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './Components/Header';
+import Body from './Components/Body';
+import Footer from './Components/Footer';
+import './App.css';
 
+function App() {
+  return (
+    <div className="app-container">
+      
+      <Header />
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import Profile from './Pages/Profile';
-import Directory from './Pages/Directory';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-const App = () => (
-        <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/directory" element={<Directory />} />
-        </Routes>
-);
+      
+      <main className="main-content">
+        <Body />
+      </main>
+      <Footer />
+    </div>
+  );
+}
 
 export default App;
