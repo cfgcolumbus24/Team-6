@@ -26,7 +26,7 @@ const eventsData = [
   },
 ];
 
-function EventsPage() {
+function Events() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredEvents = eventsData.filter((event) =>
@@ -66,5 +66,5 @@ function EventsPage() {
   );
 }
 
-export default EventsPage;
+export default Events;
 
