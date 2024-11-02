@@ -5,12 +5,12 @@ import Resources from './Pages/Resources';
 import Resource from './Pages/Resource';
 import Events from './Pages/Events';
 import Event from './Pages/Event';
-import Body from './Components/Body';
+import Homepage from './Pages/Homepage';
 
 const App = () => (
     <Router>
         <Routes>
-            <Route path="/" element={<Body />} />
+            <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/events" element={<Events />} />
