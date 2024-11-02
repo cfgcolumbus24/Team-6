@@ -2,32 +2,38 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ResourceCard from "../Components/ResourceCard";
 import { Container, Row, Col, Form } from "react-bootstrap";
-import Header from "../Components/Header";
 
 function Resources() {
-  const [resources, setResources] = useState([]);
+  const [resources, setResources] = useState([]); // Initialize as an empty array
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch resources from the backend
   useEffect(() => {
     const fetchResources = async () => {
       try {
         const response = await axios.get("http://localhost:5001/api/resources");
-        setResources(response.data.data);
-        console.log("Fetched resources:", response.data.data);
+        setResources(response.data.data || []); // Ensure resources is an array
       } catch (error) {
         console.error("Error fetching resources:", error);
+        setError("Failed to fetch resources.");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchResources();
   }, []);
 
-  const filteredResources = resources.filter((resource) =>
+  // Filter resources based on the search term, safely check for array
+  const filteredResources = (resources || []).filter((resource) =>
     resource.resourceTitle
       ? resource.resourceTitle.toLowerCase().includes(searchTerm.toLowerCase())
       : false
   );
+
+  if (loading) return <Container className="my-5"><h2>Loading...</h2></Container>;
+  if (error) return <Container className="my-5"><h2>{error}</h2></Container>;
 
   return (
     <Container className="my-5">
@@ -49,7 +55,7 @@ function Resources() {
                 date={resource.resourceDate}
                 author={resource.resourceAuthor}
                 content={resource.resourceContent}
-                imageUrl={resource.imageUrl || "https://via.placeholder.com/150"}
+                imageUrl={resource.imageUrl || "https://picsum.photos/300/150"}
               />
             </Col>
           ))}
@@ -68,6 +74,3 @@ function Resources() {
 }
 
 export default Resources;
-
-
-
