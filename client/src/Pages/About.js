@@ -1,14 +1,16 @@
 // src/Pages/About.js
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import '../About.css';
+
 const About = () => (
     <Container className="about-container py-5">
         {/* Main Title */}
         <h1 className="text-center mb-5">About LMCC</h1>
 
         {/* Introduction Section */}
-        <Row className="mb-5 align-items-center">
-            <Col md={6}>
+        <Row className="mb-5 justify-content-center">
+            <Col md={8} className="text-left">
                 <h2 className="fw-bold">Our Story</h2>
                 <p>
                     Founded as Lower Manhattan Cultural Council, LMCC serves, connects, and makes space for artists and community.
@@ -18,24 +20,12 @@ const About = () => (
                 </p>
                 <Button href="/events" variant="primary" className="mt-3 shadow">Discover Our Events</Button>
             </Col>
-            <Col md={6}>
-                <div className="image-overlay rounded shadow-lg">
-                    <img 
-                        src="https://via.placeholder.com/500x300" 
-                        alt="LMCC" 
-                        className="img-fluid rounded"
-                    />
-                    <div className="overlay-text">
-                        <p>Empowering Artists Since 1973</p>
-                    </div>
-                </div>
-            </Col>
         </Row>
 
         {/* Mission Statement */}
-        <Row className="mb-5 text-center">
-            <Col>
-                <Card className="mission-card shadow-sm border-0 p-4">
+        <Row className="mb-5 text-center justify-content-center">
+            <Col md={10}>
+                <Card className="mission-card text-bubble shadow-sm border-0 p-4">
                     <Card.Body>
                         <h2 className="fw-bold">Our Mission</h2>
                         <p>
@@ -48,7 +38,7 @@ const About = () => (
         </Row>
 
         {/* Values Section */}
-        <Row className="mb-5">
+        <Row className="mb-5 justify-content-center">
             <h2 className="fw-bold text-center mb-4">Our Core Values</h2>
             {[
                 { color: "bg-primary", title: "Artistic Innovation", text: "We believe artists are vital to a healthy society, bringing fresh ideas and challenging the norm." },
@@ -58,7 +48,7 @@ const About = () => (
                 { color: "bg-danger", title: "Heritage and Respect", text: "We honor the history of the land and the communities we work within." }
             ].map((value, index) => (
                 <Col md={4} key={index} className="mb-4">
-                    <Card className={`value-card h-100 shadow-sm border-0 ${value.color}`}>
+                    <Card className={`value-card text-bubble h-100 shadow-sm border-0 ${value.color}`}>
                         <Card.Body className="text-center text-white">
                             <h5 className="fw-bold">{value.title}</h5>
                             <p>{value.text}</p>
@@ -71,27 +61,35 @@ const About = () => (
         {/* LMCC Serves Artists and Community Sections */}
         <Row className="mb-5">
             <Col md={6}>
-                <h2 className="fw-bold">LMCC Serves Artists</h2>
-                <ul className="list-unstyled">
-                    <li>🎨 Residencies that enable artists to experiment and develop their work</li>
-                    <li>💰 Grants to support local arts and community projects</li>
-                    <li>🌍 Public presentations to showcase artists’ work</li>
-                </ul>
+                <Card className="text-bubble community-card shadow-sm border-0">
+                    <Card.Body>
+                        <h2 className="fw-bold">LMCC Serves Artists</h2>
+                        <ul className="list-unstyled">
+                            <li>🎨 Residencies that enable artists to experiment and develop their work</li>
+                            <li>💰 Grants to support local arts and community projects</li>
+                            <li>🌍 Public presentations to showcase artists’ work</li>
+                        </ul>
+                    </Card.Body>
+                </Card>
             </Col>
             <Col md={6}>
-                <h2 className="fw-bold">LMCC Serves Community</h2>
-                <ul className="list-unstyled">
-                    <li>🎭 Free public programs that activate neighborhoods in Lower Manhattan</li>
-                    <li>🧩 Connecting audiences with artists and the creative process</li>
-                    <li>🏆 Grants for community-based arts organizations</li>
-                </ul>
+                <Card className="text-bubble community-card shadow-sm border-0">
+                    <Card.Body>
+                        <h2 className="fw-bold">LMCC Serves Community</h2>
+                        <ul className="list-unstyled">
+                            <li>🎭 Free public programs that activate neighborhoods in Lower Manhattan</li>
+                            <li>🧩 Connecting audiences with artists and the creative process</li>
+                            <li>🏆 Grants for community-based arts organizations</li>
+                        </ul>
+                    </Card.Body>
+                </Card>
             </Col>
         </Row>
 
         {/* Community and Sustainability Sections */}
         <Row className="mb-5">
             <Col md={6}>
-                <Card className="shadow-sm border-0 h-100 community-card">
+                <Card className="text-bubble shadow-sm border-0">
                     <Card.Body>
                         <h2 className="fw-bold">Community</h2>
                         <p>
@@ -102,7 +100,7 @@ const About = () => (
                 </Card>
             </Col>
             <Col md={6}>
-                <Card className="shadow-sm border-0 h-100 sustainability-card">
+                <Card className="text-bubble shadow-sm border-0">
                     <Card.Body>
                         <h2 className="fw-bold">Sustainability</h2>
                         <p>
@@ -114,15 +112,18 @@ const About = () => (
             </Col>
         </Row>
 
-        {/* Land Acknowledgement */}
-        <Row className="mb-5">
-            <Col>
-                <Card className="land-card shadow-sm border-0 p-4">
+        {/* Value of Art Message */}
+        <Row className="mb-5 justify-content-center">
+            <Col md={10}>
+                <Card className="value-of-art-card text-bubble shadow-sm border-0 p-4">
                     <Card.Body className="text-center">
-                        <h2 className="fw-bold">Land Acknowledgement</h2>
+                        <h2 className="fw-bold">The Value of Art</h2>
                         <p>
-                            We acknowledge that our work is on the traditional lands of the Lenape people. We respect the Lenape and other
-                            Indigenous caretakers of these lands, past, present, and future.
+                            Art holds the power to transform, inspire, and connect us all. It challenges perspectives, brings diverse
+                            communities together, and illuminates the beauty of shared human experiences. As champions of artistic
+                            expression, we believe in the boundless potential of art to foster understanding, empathy, and positive change
+                            within society. Through supporting artists and cultural initiatives, we strive to create a world enriched by
+                            creativity, inclusivity, and a shared appreciation for the arts.
                         </p>
                     </Card.Body>
                 </Card>
