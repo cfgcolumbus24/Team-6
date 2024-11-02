@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Register.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -25,12 +27,15 @@ const Register = () => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:5001/api/users/register', formData);
             if (response.data.success) {
                 alert("Registration successful!");
+                navigate('/');
             } else {
                 alert(response.data.message);
             }
