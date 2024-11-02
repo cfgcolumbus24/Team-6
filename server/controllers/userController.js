@@ -177,6 +177,60 @@ const login = async (req, res) => {
     }
 };
 
-// Export the functions to be used in routes
-module.exports = { createUser, login, register, getAllUsers };
+// Function to get the profile of the logged-in user
+const getUserProfile = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const user = await User.findById(userId).select('-password');
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        console.error("Error fetching user profile:", error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
 
+// Function to update the profile of the logged-in user
+const updateUserProfile = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const updates = req.body;
+
+        const updatedUser = await User.findByIdAndUpdate(userId, updates, { new: true }).select('-password');
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json({ message: 'Profile updated successfully', user: updatedUser });
+    } catch (error) {
+        console.error("Error updating user profile:", error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+// Middleware to verify token
+const verifyToken = (req, res, next) => {
+    const token = req.header('Authorization')?.split(' ')[1];
+    if (!token) return res.status(401).json({ message: 'Access denied' });
+
+    try {
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = verified;
+        next();
+    } catch (error) {
+        res.status(400).json({ message: 'Invalid token' });
+    }
+};
+
+// Export the functions to be used in routes
+module.exports = {
+    createUser,
+    login,
+    register,
+    getAllUsers,
+    getUserProfile,
+    updateUserProfile,
+    verifyToken
+};
