@@ -1,85 +1,170 @@
+// Register.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Register.css'; // Import custom CSS for styles
+import './Register.css';
 
 const Register = () => {
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
+        username: '',
         email: '',
-        password: ''
+        password: '',
+        fname: '',
+        lname: '',
+        bio: '',
+        title: '',
+        image: '',
+        instagram: '',
+        facebook: '',
+        phoneNumber: ''
     });
 
-    const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/auth/register', formData);
-            alert("Registration successful!");
+            const response = await axios.post('http://localhost:5000/api/auth/register', formData);
+            if (response.data.success) {
+                alert("Registration successful!");
+            } else {
+                alert(response.data.message);
+            }
         } catch (error) {
-            console.error(error);
-            alert("Error during registration.");
+            console.error("Registration error:", error);
+            alert("Failed to register. Please try again.");
         }
     };
 
     return (
-        <Container className="mt-5 gradient-bg">
+        <Container className="mt-5">
             <Row className="justify-content-md-center">
                 <Col md={6}>
-                    <h2 className="text-center text-white">Register</h2>
-                    <Form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow">
-                        <Form.Group controlId="formBasicFirstName">
-                            <Form.Label>First Name</Form.Label>
+                    <h2 className="text-center">Register</h2>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group controlId="formUsername">
+                            <Form.Label>Username</Form.Label>
                             <Form.Control
                                 type="text"
-                                name="firstName"
-                                placeholder="Enter your first name"
-                                value={formData.firstName}
+                                name="username"
+                                value={formData.username}
                                 onChange={handleChange}
                                 required
                             />
                         </Form.Group>
 
-                        <Form.Group controlId="formBasicLastName">
-                            <Form.Label>Last Name</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="lastName"
-                                placeholder="Enter your last name"
-                                value={formData.lastName}
-                                onChange={handleChange}
-                                required
-                            />
-                        </Form.Group>
-
-                        <Form.Group controlId="formBasicEmail">
+                        <Form.Group controlId="formEmail">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control
                                 type="email"
                                 name="email"
-                                placeholder="Enter your email"
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
                             />
                         </Form.Group>
 
-                        <Form.Group controlId="formBasicPassword">
+                        <Form.Group controlId="formPassword">
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type="password"
                                 name="password"
-                                placeholder="Enter your password"
                                 value={formData.password}
                                 onChange={handleChange}
                                 required
                             />
                         </Form.Group>
 
-                        <Button variant="primary" type="submit" className="w-100">
+                        <Form.Group controlId="formFname">
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="fname"
+                                value={formData.fname}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="formLname">
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="lname"
+                                value={formData.lname}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="formBio">
+                            <Form.Label>Bio</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="bio"
+                                value={formData.bio}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="formTitle">
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="title"
+                                value={formData.title}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="formImage">
+                            <Form.Label>Image URL</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="image"
+                                value={formData.image}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="formInstagram">
+                            <Form.Label>Instagram</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="instagram"
+                                value={formData.instagram}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="formFacebook">
+                            <Form.Label>Facebook</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="facebook"
+                                value={formData.facebook}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+
+                        <Form.Group controlId="formPhoneNumber">
+                            <Form.Label>Phone Number</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="phoneNumber"
+                                value={formData.phoneNumber}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
+
+                        <Button variant="primary" type="submit" className="mt-3 w-100">
                             Register
                         </Button>
                     </Form>

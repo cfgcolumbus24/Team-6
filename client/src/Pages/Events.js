@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import EventCard from '../Components/EventCard';
 import { Container, Row, Col, Form } from 'react-bootstrap';
+import Header from '../Components/Header';
 
 const eventsData = [
   {
@@ -35,6 +36,7 @@ function Events() {
 
   return (
     <Container className="my-5">
+      < Header />
       <h2 className="text-center mb-4">Upcoming Events</h2>
       <Form.Control
         type="text"

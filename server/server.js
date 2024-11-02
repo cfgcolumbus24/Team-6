@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const connectDB = require('./config/db'); // Import database connection function
 const userRoutes = require('./routes/userRoutes'); // Import user routes
 const eventRoutes = require('./routes/eventsRoute'); // Import event routes
@@ -15,6 +16,8 @@ connectDB();
 
 // Middleware to parse JSON data from incoming requests
 app.use(express.json()); // This will parse incoming JSON data correctly
+
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 // Define a test route
 app.get('/', (req, res) => {

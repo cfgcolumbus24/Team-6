@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Card } from 'react-bootstrap';
+import Header from '../Components/Header';
 
 const resources = [
     {
@@ -42,6 +43,7 @@ function Resource() {
   
     return (
       <Container className="my-5">
+        < Header />
         <Card>
           <Card.Img variant="top" src={resource.imageUrl} />
           <Card.Body>

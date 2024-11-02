@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ResourceCard from "../Components/ResourceCard";
 import { Container, Row, Col, Form } from "react-bootstrap";
+import Header from "../Components/Header";
 
 const resources = [
   {
@@ -41,6 +42,7 @@ function Resources() {
 
   return (
     <Container className="my-5">
+      < Header />
       <h2 className="text-center mb-4">Resources</h2>
       <Form.Control
         type="text"

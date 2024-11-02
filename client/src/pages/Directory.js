@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Table, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from '../Components/Header';
 
 const Directory = () => {
     // const [directoryData, setDirectoryData] = useState([]);
@@ -57,7 +58,9 @@ const Directory = () => {
 
 
     return (
+    
         <Container className="my-5">
+            < Header />
             <h2 className="text-center mb-4">User Directory</h2>
             <Table striped bordered hover responsive>
                 <thead>

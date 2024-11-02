@@ -6,6 +6,7 @@ import Resource from './Pages/Resource';
 import Events from './Pages/Events';
 import Event from './Pages/Event';
 import Homepage from './Pages/Homepage';
+import Directory from './Pages/Directory';
 
 const App = () => (
     <Router>
@@ -17,6 +18,7 @@ const App = () => (
             <Route path="/resources" element={<Resources />} />
             <Route path="/event/:id" element={<Event />} />
             <Route path="/resource/:id" element={<Resource />} />
+            <Route path="/directory" element={<Directory />} />
         </Routes>
     </Router>
 );
