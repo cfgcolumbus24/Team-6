@@ -1,58 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Container, Row, Col } from 'react-bootstrap';
 import EventCard from '../Components/EventCard';
-import { Container, Row, Col, Form } from 'react-bootstrap';
-
-const eventsData = [
-  {
-    id: 1,
-    title: 'React Workshop',
-    date: '2024-11-10',
-    description: 'A comprehensive workshop on React fundamentals and best practices.',
-    imageUrl: 'https://via.placeholder.com/150'
-  },
-  {
-    id: 2,
-    title: 'Bootstrap Basics',
-    date: '2024-11-15',
-    description: 'Learn how to use Bootstrap to style your web applications quickly and effectively.',
-    imageUrl: 'https://via.placeholder.com/150'
-  },
-  {
-    id: 3,
-    title: 'JavaScript Deep Dive',
-    date: '2024-11-20',
-    description: 'An in-depth session on advanced JavaScript concepts.',
-    imageUrl: 'https://via.placeholder.com/150'
-  },
-];
 
 function Events() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [events, setEvents] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [dateFilter, setDateFilter] = useState('');
 
-  const filteredEvents = eventsData.filter((event) =>
-    event.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Fetch events from the backend
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get('http://localhost:5001/api/events');
+        setEvents(response.data.data);
+        console.log('Fetched events:', response.data.data);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  const filteredEvents = events.filter((event) => {
+    const matchesTitle = event.eventTitle ? event.eventTitle.toLowerCase().includes(searchTerm.toLowerCase()) : true;
+    const matchesDate = dateFilter ? new Date(event.eventDate) >= new Date(dateFilter) : true;
+    return matchesTitle && matchesDate;
+  });
 
   return (
     <Container className="my-5">
       <h2 className="text-center mb-4">Upcoming Events</h2>
-      <Form.Control
-        type="text"
-        placeholder="Search by title..."
-        className="mb-4"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
       <Row>
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event) => (
-            <Col key={event.id} md={4} className="mb-4">
+            <Col key={event._id || event.id} md={4} className="mb-4">
               <EventCard
-                id={event.id}
-                title={event.title}
-                date={event.date}
-                description={event.description}
-                imageUrl={event.imageUrl}
+                id={event._id || event.id}
+                title={event.eventTitle || 'Untitled Event'}
+                date={event.eventDate || 'Date Unavailable'}
+                description={event.eventDescription || 'No description available.'}
+                imageUrl={event.eventImage || 'https://via.placeholder.com/150'}
               />
             </Col>
           ))
@@ -67,4 +56,3 @@ function Events() {
 }
 
 export default Events;
-
