@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken');
 
 // Function to create a new user
 const createUser = async (req, res) => {
-    // Destructure the request body
     const {
         username,
         email,
@@ -27,16 +26,16 @@ const createUser = async (req, res) => {
     }
 
     try {
-        // Hash the password before saving
+        // Hash the password
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         // Create a new user instance
         const newUser = new User({
-            _id: new mongoose.Types.ObjectId(), // Generate a new ObjectId
+            _id: new mongoose.Types.ObjectId(),
             username,
             email,
-            password: hashedPassword, // Store the hashed password
+            password: hashedPassword,
             fname,
             lname,
             bio,
@@ -48,9 +47,9 @@ const createUser = async (req, res) => {
 
         // Save the user to the database
         const savedUser = await newUser.save();
-        
-        // Respond with the created user data, excluding the password
-        const { password: _, ...userData } = savedUser.toObject(); // Remove password from response
+
+        // Exclude password from the response
+        const { password: _, ...userData } = savedUser.toObject();
         res.status(201).json({
             success: true,
             message: 'User created successfully',
@@ -58,7 +57,7 @@ const createUser = async (req, res) => {
         });
     } catch (error) {
         console.error("Error creating user:", error);
-        if (error.code === 11000) { // Duplicate key error (unique constraint violation)
+        if (error.code === 11000) {
             return res.status(409).json({ 
                 success: false, 
                 message: 'Username, email, or phone number already exists.' 
@@ -108,6 +107,29 @@ const register = async (req, res) => {
         console.error("Registration error:", error);
         res.status(500).json({ message: 'Error registering user' });
     }
+
+// Function to get all users
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find().select('-password'); // Exclude password field
+        res.status(200).json({
+            success: true,
+            data: users
+        });
+    } catch (error) {
+        console.error("Error retrieving users:", error);
+        res.status(500).json({ 
+            success: false, 
+            message: 'Error retrieving users', 
+            error: error.message 
+        });
+    }
+};
+
+// Export the functions
+module.exports = {
+    createUser,
+    getAllUsers
 };
 
 const login = async (req, res) => {
