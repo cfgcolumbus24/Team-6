@@ -12,6 +12,8 @@ import About from './Pages/About';
 
 import Header from './Components/Header';
 import Footer from './Components/Footer';
+import Directory from './Pages/Directory';
+import Profile from './Pages/Profile';
 
 const App = () => (
   <>
@@ -26,6 +28,8 @@ const App = () => (
             <Route path="/event/:id" element={<Event />} />
             <Route path="/resource/:id" element={<Resource />} />
             <Route path="/about" element={<About />} /> {/* Add the About route */}
+            <Route path="/directory" element={<Directory />} />
+            <Route path="/profile" element={<Profile />} />
         </Routes>
     </Router>
     <Footer />

@@ -17,7 +17,7 @@ const Login = () => {
             const response = await axios.post('http://localhost:5001/api/users/login', formData);
             localStorage.setItem("token", response.data.token);
             alert("Login successful!");
-            navigate('/p');
+            navigate('/');
         } catch (error) {
             console.error(error);
             alert("Login failed.");
