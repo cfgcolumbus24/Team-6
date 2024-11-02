@@ -36,7 +36,7 @@ function Resource() {
     return (
         <Container className="my-5">
             <Card>
-                <Card.Img variant="top" src={resource.imageUrl || 'https://via.placeholder.com/150'} style={{ maxHeight: '300px', objectFit: 'cover' }} />
+                <Card.Img variant="top" src={resource.imageUrl || 'https://picsum.photos/300/150'} style={{ maxHeight: '300px', objectFit: 'cover' }} />
                 <Card.Body>
                     <Card.Title>{resource.resourceTitle}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{resource.resourceDate}</Card.Subtitle>
