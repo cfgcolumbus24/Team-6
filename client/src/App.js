@@ -9,6 +9,7 @@ import Events from './Pages/Events';
 import Event from './Pages/Event';
 import Homepage from './Pages/Homepage';
 import About from './Pages/About';
+import NotFound from './Pages/NotFound';
 
 import Header from './Components/Header';
 import Footer from './Components/Footer';
@@ -25,11 +26,13 @@ const App = () => (
             <Route path="/register" element={<Register />} />
             <Route path="/events" element={<Events />} />
             <Route path="/resources" element={<Resources />} />
+            <Route path="/directory" element={<Directory />} />
             <Route path="/event/:id" element={<Event />} />
             <Route path="/resource/:id" element={<Resource />} />
-            <Route path="/about" element={<About />} /> {/* Add the About route */}
+            <Route path="/about" element={<About />} /> 
             <Route path="/directory" element={<Directory />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     </Router>
     <Footer />
