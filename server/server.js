@@ -29,6 +29,21 @@ app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/resources', resourceRoutes);
 
+app.use('/api/user', userRoutes);
+
+app.get('/api/users/:username', async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.params.username });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 // Define the port and start the server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {

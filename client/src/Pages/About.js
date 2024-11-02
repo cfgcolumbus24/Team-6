@@ -6,7 +6,6 @@ import Header from '../Components/Header';
 
 const About = () => (
     <Container className="about-container py-5">
-        <Header />
         {/* Main Title */}
         <h1 className="text-center mb-5">About LMCC</h1>
 
