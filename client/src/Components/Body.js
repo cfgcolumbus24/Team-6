@@ -1,7 +1,7 @@
+// src/components/Body.js
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import '../Body.css';
-
 
 function Body() {
   return (
@@ -47,9 +47,9 @@ function Body() {
           <h2 className="fw-bold text-white">Alumni Testimonials</h2>
           <Row className="g-4 mt-4 justify-content-center">
             {[
-              { quote: "Being part of this network has helped me grow both professionally and personally.", name: "Alex Johnson, Class of 2010" },
-              { quote: "The alumni events have reconnected me with friends and mentors. It's been invaluable.", name: "Taylor Smith, Class of 2015" },
-              { quote: "I’ve found so much support and new opportunities within this community.", name: "Jordan Lee, Class of 2018" },
+              { quote: "This network has connected me with incredible artists around the world.", name: "Emma Rivera, Painter" },
+              { quote: "The alumni events have enriched my career as a sculptor, providing invaluable mentorship.", name: "David Kim, Sculptor" },
+              { quote: "Being part of this community has opened doors for exhibitions and collaborations.", name: "Maya Thompson, Art Curator" },
             ].map((testimonial, index) => (
               <Col key={index} md={4}>
                 <Card className="testimonial-card shadow-lg border-0 rounded-4">
@@ -68,13 +68,13 @@ function Body() {
       <Container fluid className="alumni-section text-center py-5">
         <h2 className="fw-bold">Meet Our Alumni</h2>
         <p className="text-muted mx-auto" style={{ maxWidth: '800px' }}>
-          Our alumni are leaders, innovators, and changemakers around the globe. Here are just a few of their inspiring stories.
+          Our alumni are leaders, innovators, and changemakers in the arts. Here are just a few of their inspiring stories.
         </p>
         <Row className="g-4 mt-4 justify-content-center">
           {[
-            { name: 'Sarah Patel', role: 'Social Impact Advocate', img: 'https://via.placeholder.com/150' },
-            { name: 'James Wong', role: 'Tech Entrepreneur', img: 'https://via.placeholder.com/150' },
-            { name: 'Linda Garcia', role: 'Community Organizer', img: 'https://via.placeholder.com/150' },
+            { name: 'Sophia Hernandez', role: 'Mixed Media Artist', img: 'https://via.placeholder.com/150' },
+            { name: 'Liam Patel', role: 'Digital Illustrator', img: 'https://via.placeholder.com/150' },
+            { name: 'Isabella Lee', role: 'Performance Artist', img: 'https://via.placeholder.com/150' },
           ].map((alumni, index) => (
             <Col key={index} md={4}>
               <Card className="alumni-card shadow-lg border-0 rounded-4 hover-scale">
@@ -114,3 +114,4 @@ function Body() {
 }
 
 export default Body;
+
