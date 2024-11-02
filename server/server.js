@@ -5,7 +5,6 @@ const connectDB = require('./config/db'); // Import database connection function
 const userRoutes = require('./routes/userRoutes'); // Import user routes
 const eventRoutes = require('./routes/eventsRoute'); // Import event routes
 const resourceRoutes = require('./routes/resourcesRoute'); // Import resource routes
-const chatbotRoutes = require('./routes/chatbotRoutes');
 
 require('dotenv').config(); // Load environment variables from .env
 
@@ -31,8 +30,6 @@ app.use('/api/events', eventRoutes);
 app.use('/api/resources', resourceRoutes);
 
 app.use('/api/user', userRoutes);
-
-app.use('/api/chatbot', chatbotRoutes);
 
 app.get('/api/users/:username', async (req, res) => {
     try {

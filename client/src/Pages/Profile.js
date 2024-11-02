@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Container, Row, Col, Card, Button, Image, ListGroup, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Chatbot from './Chatbot';
 
 const Profile = () => {
     const [profileData, setProfileData] = useState(null);
@@ -149,7 +148,6 @@ const Profile = () => {
                     </Card>
                 </Col>
             </Row>
-            {/* <Chatbot /> */}
         </Container>
     );
 };
