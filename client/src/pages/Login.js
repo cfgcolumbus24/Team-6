@@ -14,10 +14,10 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5001/api/login', formData);
+            const response = await axios.post('http://localhost:5001/api/users/login', formData);
             localStorage.setItem("token", response.data.token);
             alert("Login successful!");
-            navigate('/home');
+            navigate('/');
         } catch (error) {
             console.error(error);
             alert("Login failed.");
