@@ -54,7 +54,7 @@ function Header() {
             <Button variant="outline-dark" href="/login" className="btn-sleek mx-2 fs-6">
               Log In
             </Button>
-            <Button variant="dark" href="/signup" className="btn-sleek mx-2 fs-6">
+            <Button variant="dark" href="/register" className="btn-sleek mx-2 fs-6">
               Sign Up
             </Button>
             <Button variant="success" href="/connect" className="btn-sleek mx-2 fs-6">

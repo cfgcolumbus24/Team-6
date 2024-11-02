@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ResourceCard from "../Components/ResourceCard";
 import { Container, Row, Col, Form } from "react-bootstrap";
+import Header from "../Components/Header";
 
 function Resources() {
   const [resources, setResources] = useState([]);
@@ -30,6 +31,7 @@ function Resources() {
 
   return (
     <Container className="my-5">
+      < Header />
       <h2 className="text-center mb-4">Resources</h2>
       <Form.Control
         type="text"

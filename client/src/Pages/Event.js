@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Container, Card } from 'react-bootstrap';
 import axios from 'axios';
 
+
 function Event() {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
@@ -35,6 +36,7 @@ function Event() {
 
   return (
     <Container className="my-5">
+      < Header />
       <Card>
         <Card.Img variant="top" src={event.eventImage || 'https://via.placeholder.com/150'} style={{ maxHeight: '300px', objectFit: 'cover' }} />
         <Card.Body>

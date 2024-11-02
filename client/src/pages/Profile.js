@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button, Image, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from '../Components/Header';
 
 const Profile = () => {
     const profileData = {
@@ -18,6 +19,7 @@ const Profile = () => {
 
     return (
         <Container className="mt-5">
+            < Header />
             <Row className="justify-content-md-center">
                 <Col md={6}>
                     <Card>

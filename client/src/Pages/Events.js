@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row, Col } from 'react-bootstrap';
 import EventCard from '../Components/EventCard';
+import { Container, Row, Col, Form } from 'react-bootstrap';
+import Header from '../Components/Header';
+
+
 
 function Events() {
   const [events, setEvents] = useState([]);
@@ -31,6 +34,7 @@ function Events() {
 
   return (
     <Container className="my-5">
+      < Header />
       <h2 className="text-center mb-4">Upcoming Events</h2>
       <Row>
         {filteredEvents.length > 0 ? (
