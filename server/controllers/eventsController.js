@@ -1,3 +1,4 @@
+// controllers/eventsController.js
 const Event = require('../models/events');
 
 // Create a new event
@@ -5,9 +6,13 @@ exports.createEvent = async (req, res) => {
     try {
         const event = new Event(req.body);
         await event.save();
-        res.status(201).json(event);
+        res.status(201).json({
+            success: true,
+            message: 'Event created successfully',
+            data: event
+        });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ success: false, message: error.message });
     }
 };
 
@@ -15,9 +20,12 @@ exports.createEvent = async (req, res) => {
 exports.getAllEvents = async (req, res) => {
     try {
         const events = await Event.find();
-        res.json(events);
+        res.status(200).json({
+            success: true,
+            data: events
+        });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 };
 
@@ -26,11 +34,11 @@ exports.getEventById = async (req, res) => {
     try {
         const event = await Event.findById(req.params.id);
         if (!event) {
-            return res.status(404).json({ message: 'Event not found' });
+            return res.status(404).json({ success: false, message: 'Event not found' });
         }
-        res.json(event);
+        res.json({ success: true, data: event });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 };
 
@@ -39,11 +47,11 @@ exports.updateEvent = async (req, res) => {
     try {
         const event = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!event) {
-            return res.status(404).json({ message: 'Event not found' });
+            return res.status(404).json({ success: false, message: 'Event not found' });
         }
-        res.json(event);
+        res.json({ success: true, message: 'Event updated successfully', data: event });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ success: false, message: error.message });
     }
 };
 
@@ -52,11 +60,10 @@ exports.deleteEvent = async (req, res) => {
     try {
         const event = await Event.findByIdAndDelete(req.params.id);
         if (!event) {
-            return res.status(404).json({ message: 'Event not found' });
+            return res.status(404).json({ success: false, message: 'Event not found' });
         }
-        res.json({ message: 'Event deleted successfully' });
+        res.json({ success: true, message: 'Event deleted successfully' });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 };
-

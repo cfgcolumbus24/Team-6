@@ -1,10 +1,11 @@
-//server/models.resource.js
+// models/resource.js
 const mongoose = require('mongoose');
+
 const resourcesSchema = new mongoose.Schema({
-    resourceTitle: {type: String, required: true, unique: false},
-    resourceAuthor:{type: String, required: true, unique: false},
-    resourceDate: {type: String, required:true, unique: false},
-    resourceContent: {type: String, required:true, unique: false}
+    resourceTitle: { type: String, required: true, trim: true },
+    resourceAuthor: { type: String, required: true, trim: true },
+    resourceDate: { type: String, required: true },
+    resourceContent: { type: String, required: true, trim: true }
 });
 
-module.exports = mongoose.model('Resource',resourcesSchema);
+module.exports = mongoose.model('Resource', resourcesSchema);
