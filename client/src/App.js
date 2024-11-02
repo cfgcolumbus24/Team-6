@@ -1,23 +1,20 @@
-// src/App.js
-import React from 'react';
-import Header from './Components/Header';
-import Body from './Components/Body';
-import Footer from './Components/Footer';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import Resources from './Pages/Resources';
+import Resource from './Pages/Resource';
+import Events from './Pages/Events';
+import Event from './Pages/Event';
 
-function App() {
-  return (
-    <div className="app-container">
-      
-      <Header />
-
-      
-      <main className="main-content">
-        <Body />
-      </main>
-      <Footer />
-    </div>
-  );
-}
+const App = () => (
+        <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/event/:id" element={<Event />} />
+            <Route path="/resource/:id" element={<Resource />} />
+        </Routes>
+);
 
 export default App;
