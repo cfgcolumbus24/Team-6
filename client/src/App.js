@@ -6,7 +6,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Resources from './Pages/Resources';
+import Resource from './Pages/Resource';
 import Events from './Pages/Events';
+import Event from './Pages/Event';
 
 const App = () => (
         <Routes>
@@ -14,6 +16,8 @@ const App = () => (
             <Route path="/register" element={<Register />} />
             <Route path="/events" element={<Events />} />
             <Route path="/resources" element={<Resources />} />
+            <Route path="/event/:id" element={<Event />} />
+            <Route path="/resource/:id" element={<Resource />} />
         </Routes>
 );
 

@@ -1,8 +1,6 @@
-import React from 'react';
-
-import EventCard from '../Components/EventCard'
-
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useState } from 'react';
+import EventCard from '../Components/EventCard';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 
 const eventsData = [
   {
@@ -29,24 +27,44 @@ const eventsData = [
 ];
 
 function EventsPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredEvents = eventsData.filter((event) =>
+    event.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <Container className="my-5">
       <h2 className="text-center mb-4">Upcoming Events</h2>
+      <Form.Control
+        type="text"
+        placeholder="Search by title..."
+        className="mb-4"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       <Row>
-        {eventsData.map((event) => (
-          <Col key={event.id} md={4} className="mb-4">
-            <EventCard
-              id={event.id} 
-              title={event.title} 
-              date={event.date} 
-              description={event.description} 
-              imageUrl={event.imageUrl} 
-            />
+        {filteredEvents.length > 0 ? (
+          filteredEvents.map((event) => (
+            <Col key={event.id} md={4} className="mb-4">
+              <EventCard
+                id={event.id}
+                title={event.title}
+                date={event.date}
+                description={event.description}
+                imageUrl={event.imageUrl}
+              />
+            </Col>
+          ))
+        ) : (
+          <Col>
+            <p className="text-center">No results found</p>
           </Col>
-        ))}
+        )}
       </Row>
     </Container>
   );
 }
 
 export default EventsPage;
+
