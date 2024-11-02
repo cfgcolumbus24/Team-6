@@ -128,8 +128,8 @@ const Profile = () => {
                                     ) : (
                                         <div className="d-flex justify-content-around mt-2">
                                             <Button href={profileData.socialMedia.linkedin} variant="primary" target="_blank">LinkedIn</Button>
-                                            <Button href={profileData.socialMedia.github} variant="dark" target="_blank">GitHub</Button>
-                                            <Button href={profileData.socialMedia.twitter} variant="info" target="_blank">Twitter</Button>
+                                            <Button href={profileData.socialMedia.github} variant="primary" target="_blank">Facebook</Button>
+                                            <Button href={profileData.socialMedia.twitter} variant="primary" target="_blank">Twitter</Button>
                                         </div>
                                     )}
                                 </ListGroup.Item>
