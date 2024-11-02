@@ -6,9 +6,9 @@ import Body from '../Components/Body';
 function Homepage() {
   return (
     <>
-      <Header />
+      
       <Body />
-      <Footer />
+      
     </>
   );
 }
