@@ -15,28 +15,30 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Directory from './Pages/Directory';
 import Profile from './Pages/Profile';
+import Calendar from './Components/calendar';
 
 const App = () => (
   <>
     <Header />
     <Router>
-        <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/resources" element={<Resources />} />
-            <Route path="/directory" element={<Directory />} />
-            <Route path="/event/:id" element={<Event />} />
-            <Route path="/resource/:id" element={<Resource />} />
-            <Route path="/about" element={<About />} /> 
-            <Route path="/directory" element={<Directory />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="*" element={<NotFound />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/resources" element={<Resources />} />
+        <Route path="/directory" element={<Directory />} />
+        <Route path="/event/:id" element={<Event />} />
+        <Route path="/resource/:id" element={<Resource />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/directory" element={<Directory />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </Router>
     <Footer />
-    </>
+  </>
 );
 
 export default App;

@@ -41,9 +41,9 @@ function Header() {
              Events
            </Nav.Link>
 
-            {/* Events */}
-            <Nav.Link href="/directory" className="text-dark mx-3 fs-5">
-             Directory
+            {/* Calendar */}
+            <Nav.Link href="/calendar" className="text-dark mx-3 fs-5">
+             Calendar
            </Nav.Link>
 
            {/* Profile */}
