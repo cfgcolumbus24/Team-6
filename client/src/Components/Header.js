@@ -1,4 +1,4 @@
-/// src/components/Header.js
+// src/components/Header.js
 import React from 'react';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 
@@ -6,16 +6,9 @@ function Header() {
   return (
     <Navbar bg="light" expand="lg" sticky="top" className="py-3 shadow-sm">
       <Container className="justify-content-between">
-        {/* Logo and Brand */}
-        <Navbar.Brand href="/" className="d-flex align-items-center header-brand">
-          <img
-            src="/Logo cfg.png"  // Updated path to match the saved file name in public
-            alt="Lower Manhattan Cultural Center Logo"
-            width="50"
-            height="50"
-            className="d-inline-block align-top me-2"
-          />
-          <span className="fw-bold text-dark fs-3">Lower Manhattan Cultural Center</span>
+        {/* Brand Name Only, No Logo */}
+        <Navbar.Brand href="/" className="header-brand">
+          <span className="fw-bold text-dark fs-3">Lower Manhattan Cultural Council</span>
         </Navbar.Brand>
 
         {/* Toggle for Mobile View */}
@@ -50,13 +43,16 @@ function Header() {
             </Nav.Link>
           </Nav>
 
-          {/* Authentication Buttons */}
+          {/* Authentication and Connect Buttons */}
           <Nav className="ms-auto">
             <Button variant="outline-primary" href="/login" className="mx-2 fs-5">
               Log In
             </Button>
             <Button variant="primary" href="/signup" className="mx-2 fs-5">
               Sign Up
+            </Button>
+            <Button variant="success" href="/connect" className="mx-2 fs-5">
+              Connect
             </Button>
           </Nav>
         </Navbar.Collapse>
@@ -66,3 +62,4 @@ function Header() {
 }
 
 export default Header;
+
