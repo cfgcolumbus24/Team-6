@@ -9,17 +9,17 @@ import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: '',
-        fname: '',
-        lname: '',
+        username: '', 
+        email: '', 
+        password: '', 
+        fname: '', 
+        lname: '', 
         bio: '',
         title: '',
         image: '',
         instagram: '',
         facebook: '',
-        phoneNumber: ''
+        phoneNumber: '',  
     });
 
     const handleChange = (e) => {
@@ -52,7 +52,7 @@ const Register = () => {
                     <h2 className="text-center">Register</h2>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="formUsername">
-                            <Form.Label>Username</Form.Label>
+                            <Form.Label>Username<span style={{ color: 'red' }}>*</span></Form.Label>
                             <Form.Control
                                 type="text"
                                 name="username"
@@ -63,7 +63,7 @@ const Register = () => {
                         </Form.Group>
 
                         <Form.Group controlId="formEmail">
-                            <Form.Label>Email address</Form.Label>
+                            <Form.Label>Email address<span style={{ color: 'red' }}>*</span></Form.Label>
                             <Form.Control
                                 type="email"
                                 name="email"
@@ -74,7 +74,7 @@ const Register = () => {
                         </Form.Group>
 
                         <Form.Group controlId="formPassword">
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label>Password<span style={{ color: 'red' }}>*</span></Form.Label>
                             <Form.Control
                                 type="password"
                                 name="password"
@@ -85,7 +85,7 @@ const Register = () => {
                         </Form.Group>
 
                         <Form.Group controlId="formFname">
-                            <Form.Label>First Name</Form.Label>
+                            <Form.Label>First Name<span style={{ color: 'red' }}>*</span></Form.Label>
                             <Form.Control
                                 type="text"
                                 name="fname"
@@ -96,7 +96,7 @@ const Register = () => {
                         </Form.Group>
 
                         <Form.Group controlId="formLname">
-                            <Form.Label>Last Name</Form.Label>
+                            <Form.Label>Last Name<span style={{ color: 'red' }}>*</span></Form.Label>
                             <Form.Control
                                 type="text"
                                 name="lname"
@@ -113,7 +113,7 @@ const Register = () => {
                                 name="bio"
                                 value={formData.bio}
                                 onChange={handleChange}
-                                required
+                                
                             />
                         </Form.Group>
 
@@ -124,7 +124,7 @@ const Register = () => {
                                 name="title"
                                 value={formData.title}
                                 onChange={handleChange}
-                                required
+                               
                             />
                         </Form.Group>
 
@@ -159,7 +159,7 @@ const Register = () => {
                         </Form.Group>
 
                         <Form.Group controlId="formPhoneNumber">
-                            <Form.Label>Phone Number</Form.Label>
+                            <Form.Label>Phone Number<span style={{ color: 'red' }}>*</span></Form.Label>
                             <Form.Control
                                 type="text"
                                 name="phoneNumber"
