@@ -2,7 +2,7 @@
 import React from 'react';
 import Header from './Components/Header';
 import Body from './Components/Body';
-import Footer from './Components/Footer';  // Optional Footer component
+import Footer from './Components/Footer';
 import './App.css';
 
 function App() {
@@ -16,11 +16,13 @@ function App() {
         <Body />
       </main>
 
-      {/* Footer (Optional) */}
+      {/* Footer */}
       <Footer />
     </div>
   );
 }
 
 export default App;
+
+
 
