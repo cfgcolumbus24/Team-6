@@ -2,11 +2,9 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import '../About.css';
-import Header from '../Components/Header';
 
 const About = () => (
     <Container className="about-container py-5">
-        <Header />
         {/* Main Title */}
         <h1 className="text-center mb-5">About LMCC</h1>
 
@@ -21,6 +19,7 @@ const About = () => (
             </Col>
         </Row>
 
+        {/* Mission Section */}
         <Row className="mb-5 text-center justify-content-center">
             <Col md={10}>
                 <Card className="mission-card text-bubble shadow-sm border-0 p-4">
@@ -34,7 +33,7 @@ const About = () => (
             </Col>
         </Row>
 
-        {/* Core Values with Alumni Engagement */}
+        {/* Core Values Section */}
         <Row className="mb-5 justify-content-center">
             <h2 className="fw-bold text-center mb-4">Our Core Values</h2>
             {[
@@ -55,7 +54,7 @@ const About = () => (
             ))}
         </Row>
 
-        {/* LMCC's Commitment to Artists, Alumni, and Community */}
+        {/* Commitment to Artists, Alumni, and Community */}
         <Row className="mb-5">
             <Col md={6}>
                 <Card className="text-bubble community-card shadow-sm border-0">
