@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Container, Row, Col, Card, Button, Image, ListGroup, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from '../Components/Header';
 
 const Profile = () => {
     const [profileData, setProfileData] = useState(null);
@@ -72,7 +71,6 @@ const Profile = () => {
 
     return (
         <Container className="mt-5">
-            <Header />
             <Row className="justify-content-md-center">
                 <Col md={6}>
                     <Card>
@@ -116,14 +114,7 @@ const Profile = () => {
                                                 onChange={handleChange}
                                                 className="mb-2"
                                             />
-                                            <Form.Control
-                                                type="text"
-                                                placeholder="GitHub URL"
-                                                name="socialMedia.github"
-                                                value={updatedData.socialMedia.github || ''}
-                                                onChange={handleChange}
-                                                className="mb-2"
-                                            />
+                                           
                                             <Form.Control
                                                 type="text"
                                                 placeholder="Twitter URL"
@@ -136,8 +127,8 @@ const Profile = () => {
                                     ) : (
                                         <div className="d-flex justify-content-around mt-2">
                                             <Button href={profileData.socialMedia.linkedin} variant="primary" target="_blank">LinkedIn</Button>
-                                            <Button href={profileData.socialMedia.github} variant="dark" target="_blank">GitHub</Button>
-                                            <Button href={profileData.socialMedia.twitter} variant="info" target="_blank">Twitter</Button>
+                                            <Button href={profileData.socialMedia.github} variant="primary" target="_blank">Facebook</Button>
+                                            <Button href={profileData.socialMedia.twitter} variant="primary" target="_blank">Twitter</Button>
                                         </div>
                                     )}
                                 </ListGroup.Item>

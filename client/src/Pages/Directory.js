@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Table, Container } from 'react-bootstrap';
+import { Table, Container, Form, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from '../Components/Header';
-import Chatbot from '../Components/Chatbot';
 
 const Directory = () => {
     const navigate = useNavigate();
     const [directoryData, setDirectoryData] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchBy, setSearchBy] = useState('name');
 
     // Check if the user is logged in
     useEffect(() => {
@@ -30,9 +30,43 @@ const Directory = () => {
         fetchDirectoryData();
     }, []);
 
+    // Filter directory data based on the search term and search type
+    const filteredData = directoryData.filter(user => {
+        const searchValue = searchTerm.toLowerCase();
+        switch (searchBy) {
+            case 'name':
+                return (`${user.fname} ${user.lname}`).toLowerCase().includes(searchValue);
+            case 'email':
+                return user.email.toLowerCase().includes(searchValue);
+            case 'phone':
+                return user.phoneNumber.toLowerCase().includes(searchValue);
+            default:
+                return false;
+        }
+    });
+
     return (
         <Container className="my-5">
             <h2 className="text-center mb-4">User Directory</h2>
+            <Form className="mb-3">
+                <Row>
+                    <Col md={4}>
+                        <Form.Control
+                            type="text"
+                            placeholder={`Search by ${searchBy}`}
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                    </Col>
+                    <Col md={4}>
+                        <Form.Select value={searchBy} onChange={(e) => setSearchBy(e.target.value)}>
+                            <option value="name">Name</option>
+                            <option value="email">Email</option>
+                            <option value="phone">Phone</option>
+                        </Form.Select>
+                    </Col>
+                </Row>
+            </Form>
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
@@ -44,10 +78,10 @@ const Directory = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {directoryData.map((user) => (
+                    {filteredData.map((user) => (
                         <tr key={user._id}>
                             <td>
-                                <Link to={`/profile/${user._id}`} className="text-decoration-none">
+                                <Link to={`/users/${user._id}`} className="text-decoration-none">
                                     {user.fname} {user.lname}
                                 </Link>
                             </td>
@@ -72,8 +106,6 @@ const Directory = () => {
                     ))}
                 </tbody>
             </Table>
-            {/* Chatbot Component */}
-            <Chatbot />
         </Container>
     );
 };

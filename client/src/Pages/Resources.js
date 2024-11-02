@@ -86,7 +86,7 @@ function Resources() {
                 title={resource.resourceTitle}
                 date={resource.resourceDate}
                 author={resource.resourceAuthor}
-                imageUrl={resource.imageUrl || "https://picsum.photos/300/150"}
+                imageUrl={resource.imageUrl && resource.imageUrl.trim() !== "" ? resource.imageUrl : "https://picsum.photos/300/150"}
               />
             </Col>
           ))}
