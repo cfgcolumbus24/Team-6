@@ -7,6 +7,7 @@ import Events from './Pages/Events';
 import Event from './Pages/Event';
 
 const App = () => (
+    <Router>
         <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -15,6 +16,7 @@ const App = () => (
             <Route path="/event/:id" element={<Event />} />
             <Route path="/resource/:id" element={<Resource />} />
         </Routes>
+    </Router>
 );
 
 export default App;
