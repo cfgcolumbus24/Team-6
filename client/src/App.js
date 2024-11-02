@@ -8,9 +8,14 @@ import Resource from './Pages/Resource';
 import Events from './Pages/Events';
 import Event from './Pages/Event';
 import Homepage from './Pages/Homepage';
-import About from './Pages/About'; // Import the About component
+import About from './Pages/About';
+
+import Header from './Components/Header';
+import Footer from './Components/Footer';
 
 const App = () => (
+  <>
+    <Header />
     <Router>
         <Routes>
             <Route path="/" element={<Homepage />} />
@@ -23,6 +28,8 @@ const App = () => (
             <Route path="/about" element={<About />} /> {/* Add the About route */}
         </Routes>
     </Router>
+    <Footer />
+    </>
 );
 
 export default App;
