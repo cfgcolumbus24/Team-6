@@ -16,10 +16,15 @@ router.get('/', getAllUsers);
 router.get('/profile/:username', async (req, res) => {
     try {
         const user = await User.findOne({ username: req.params.username });
-        if (!user) return res.status(404).send('User not found');
-        res.json(user); // Return the user data
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+            
+        }
+        const { password, ...userData } = user.toObject();
+        res.json({ success: true, user: userData });
+        
     } catch (error) {
-        res.status(500).send('Server error');
+        res.status(500).json({ success: false, message: 'Server error', error: error.message });
     }
 });
 

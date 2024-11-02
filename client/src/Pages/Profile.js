@@ -1,37 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button, Image, ListGroup } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../Components/Header';
 
 const Profile = () => {
-    const { username } = useParams(); // Get username from URL
+    const { username } = useParams(); // Get username from the URL
     const [profileData, setProfileData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchProfileData = async () => {
+        const fetchUserProfile = async () => {
             try {
-                const response = await axios.get(`http://localhost:5001/api/profile/${username}`);
-                if (response.data.success) {
-                    setProfileData(response.data.user); // Store user data
-                } else {
-                    setError(response.data.message);
-                }
+                const response = await axios.get(`http://localhost:5001/api/users/profile/${username}`);
+                setProfileData(response.data.user); // Assuming user data is returned in the 'user' field
                 setLoading(false);
-            } catch (err) {
-                setError(err.message);
+            } catch (error) {
+                console.error(error);
                 setLoading(false);
+                alert("Failed to load user data.");
             }
         };
 
-        fetchProfileData();
+        fetchUserProfile();
     }, [username]);
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error fetching profile data: {error}</div>;
+    if (loading) {
+        return <div>Loading...</div>; // Optional loading state
+    }
+
+    if (!profileData) {
+        return <div>User not found</div>; // Handle case where user data isn't available
+    }
 
     return (
         <Container className="mt-5">
@@ -65,11 +66,11 @@ const Profile = () => {
                                 <ListGroup.Item>
                                     <strong>Social Media:</strong>
                                     <div className="d-flex justify-content-around mt-2">
-                                        {profileData.socialMedia && profileData.socialMedia.instagram && (
-                                            <Button href={profileData.socialMedia.instagram} variant="primary" target="_blank">Instagram</Button>
-                                        )}
-                                        {profileData.socialMedia && profileData.socialMedia.facebook && (
-                                            <Button href={profileData.socialMedia.facebook} variant="dark" target="_blank">Facebook</Button>
+                                        {profileData.socialMedia && (
+                                            <>
+                                                <Button href={profileData.socialMedia.instagram} variant="primary" target="_blank">Instagram</Button>
+                                                <Button href={profileData.socialMedia.facebook} variant="dark" target="_blank">Facebook</Button>
+                                            </>
                                         )}
                                     </div>
                                 </ListGroup.Item>
