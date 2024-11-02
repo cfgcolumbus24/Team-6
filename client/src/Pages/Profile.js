@@ -1,32 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Card, Button, Image, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../Components/Header';
 
 const Profile = () => {
+    const { username } = useParams(); // Get username from URL
     const [profileData, setProfileData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const username = 'exampleUser'; // Replace with actual username logic
 
     useEffect(() => {
         const fetchProfileData = async () => {
             try {
                 const response = await axios.get(`http://localhost:5001/api/profile/${username}`);
-                setProfileData(response.data);
+                if (response.data.success) {
+                    setProfileData(response.data.user); // Store user data
+                } else {
+                    setError(response.data.message);
+                }
                 setLoading(false);
             } catch (err) {
-                setError(err);
+                setError(err.message);
                 setLoading(false);
             }
         };
 
         fetchProfileData();
-    }, [username]); // Fetch when the username changes
+    }, [username]);
 
     if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error fetching profile data: {error.message}</div>;
+    if (error) return <div>Error fetching profile data: {error}</div>;
 
     return (
         <Container className="mt-5">
