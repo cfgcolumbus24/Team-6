@@ -27,7 +27,6 @@ function Header() {
              About
            </Nav.Link>
 
-           {/* Resources */}
            <Nav.Link href="/resources" className="text-dark mx-3 fs-5">
              Resources
            </Nav.Link>
@@ -36,7 +35,6 @@ function Header() {
              Directory
            </Nav.Link>
 
-           {/* Events */}
            <Nav.Link href="/events" className="text-dark mx-3 fs-5">
              Events
            </Nav.Link>
@@ -47,12 +45,12 @@ function Header() {
            </Nav.Link>
 
            {/* Profile */}
+
            <Nav.Link href="/profile" className="text-dark mx-3 fs-5">
              Profile
            </Nav.Link>
          </Nav>
 
-         {/* Authentication Buttons */}
          <Nav className="ms-auto">
            <Button variant="outline-primary" href="/login" className="mx-2 fs-5">
              Login
