@@ -1,22 +1,24 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
-import Profile from './Pages/Profile';
-import Directory from './Pages/Directory';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Resources from './Pages/Resources';
+import Resource from './Pages/Resource';
+import Events from './Pages/Events';
+import Event from './Pages/Event';
+import Homepage from './Pages/Homepage';
 
 const App = () => (
+    <Router>
         <Routes>
+            <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/directory" element={<Directory />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/event/:id" element={<Event />} />
+            <Route path="/resource/:id" element={<Resource />} />
         </Routes>
+    </Router>
 );
 
 export default App;

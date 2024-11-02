@@ -12,7 +12,7 @@ function EventCard({ id, title, date, description, imageUrl }) {
         <Card.Text>{description}</Card.Text>
         {/* Link to individual page for event shown on card */}
         <Link to={`/event/${id}`}>
-          <Button variant="primary">RSVP</Button>
+          <Button variant="primary">View Event</Button>
         </Link>
       </Card.Body>
     </Card>
