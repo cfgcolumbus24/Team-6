@@ -4,6 +4,7 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css'; // Import custom CSS for styles
 
+
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
 
@@ -23,6 +24,7 @@ const Login = () => {
 
     return (
         <Container className="mt-5 gradient-bg">
+
             <Row className="justify-content-md-center">
                 <Col md={6}>
                     <h2 className="text-center text-white">Login</h2>

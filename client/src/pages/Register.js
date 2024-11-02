@@ -4,6 +4,7 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Register.css'; // Import custom CSS for styles
 
+
 const Register = () => {
     const [formData, setFormData] = useState({
         firstName: '',
