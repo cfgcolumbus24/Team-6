@@ -1,37 +1,73 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, Button, Image, ListGroup } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Container, Row, Col, Card, Button, Image, ListGroup, Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../Components/Header';
 
 const Profile = () => {
-    const { username } = useParams(); // Get username from the URL
     const [profileData, setProfileData] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [isEditing, setIsEditing] = useState(false);
+    const [updatedData, setUpdatedData] = useState({ bio: '', socialMedia: {} });
+    const navigate = useNavigate();
 
+    // Fetch the logged-in user's profile data
     useEffect(() => {
-        const fetchUserProfile = async () => {
+        const fetchProfileData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5001/api/users/profile/${username}`);
-                setProfileData(response.data.user); // Assuming user data is returned in the 'user' field
-                setLoading(false);
+                const token = localStorage.getItem("token");
+                if (!token) {
+                    navigate('/login');
+                    return;
+                }
+
+                const response = await axios.get('http://localhost:5001/api/users/me', {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                setProfileData(response.data);
+                setUpdatedData({
+                    bio: response.data.bio,
+                    socialMedia: response.data.socialMedia
+                });
             } catch (error) {
-                console.error(error);
-                setLoading(false);
-                alert("Failed to load user data.");
+                console.error('Error fetching profile data:', error);
+                navigate('/login');
             }
         };
 
-        fetchUserProfile();
-    }, [username]);
+        fetchProfileData();
+    }, [navigate]);
 
-    if (loading) {
-        return <div>Loading...</div>; // Optional loading state
-    }
+    // Handle input change for editable fields
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        if (name.startsWith('socialMedia.')) {
+            const key = name.split('.')[1];
+            setUpdatedData((prevState) => ({
+                ...prevState,
+                socialMedia: { ...prevState.socialMedia, [key]: value }
+            }));
+        } else {
+            setUpdatedData({ ...updatedData, [name]: value });
+        }
+    };
+
+    // Save changes to the server
+    const handleSave = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            await axios.put('http://localhost:5001/api/users/me', updatedData, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setProfileData({ ...profileData, ...updatedData });
+            setIsEditing(false);
+        } catch (error) {
+            console.error('Error updating profile data:', error);
+        }
+    };
 
     if (!profileData) {
-        return <div>User not found</div>; // Handle case where user data isn't available
+        return <Container className="my-5"><h2>Loading...</h2></Container>;
     }
 
     return (
@@ -45,36 +81,78 @@ const Profile = () => {
                                 <Col>
                                     <Image src={profileData.image || 'https://via.placeholder.com/150'} roundedCircle width="150" height="150" />
                                     <h3 className="mt-3">{profileData.fname} {profileData.lname}</h3>
-                                    <p>{profileData.bio}</p>
+                                    {isEditing ? (
+                                        <Form.Control
+                                            as="textarea"
+                                            rows={3}
+                                            name="bio"
+                                            value={updatedData.bio}
+                                            onChange={handleChange}
+                                        />
+                                    ) : (
+                                        <p>{profileData.bio}</p>
+                                    )}
                                 </Col>
                             </Row>
 
                             <Row className="text-center my-4">
                                 <Col>
-                                    <h5>Title</h5>
-                                    <p>{profileData.title}</p>
+                                    <h5>Contact Info</h5>
+                                    <p>{profileData.phoneNumber}</p>
+                                    <p><a href={`mailto:${profileData.email}`}>{profileData.email}</a></p>
                                 </Col>
                             </Row>
 
                             <ListGroup variant="flush">
                                 <ListGroup.Item>
-                                    <strong>Phone:</strong> {profileData.phoneNumber}
-                                </ListGroup.Item>
-                                <ListGroup.Item>
-                                    <strong>Email:</strong> <a href={`mailto:${profileData.email}`}>{profileData.email}</a>
-                                </ListGroup.Item>
-                                <ListGroup.Item>
                                     <strong>Social Media:</strong>
-                                    <div className="d-flex justify-content-around mt-2">
-                                        {profileData.socialMedia && (
-                                            <>
-                                                <Button href={profileData.socialMedia.instagram} variant="primary" target="_blank">Instagram</Button>
-                                                <Button href={profileData.socialMedia.facebook} variant="dark" target="_blank">Facebook</Button>
-                                            </>
-                                        )}
-                                    </div>
+                                    {isEditing ? (
+                                        <div className="mt-2">
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="LinkedIn URL"
+                                                name="socialMedia.linkedin"
+                                                value={updatedData.socialMedia.linkedin || ''}
+                                                onChange={handleChange}
+                                                className="mb-2"
+                                            />
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="GitHub URL"
+                                                name="socialMedia.github"
+                                                value={updatedData.socialMedia.github || ''}
+                                                onChange={handleChange}
+                                                className="mb-2"
+                                            />
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Twitter URL"
+                                                name="socialMedia.twitter"
+                                                value={updatedData.socialMedia.twitter || ''}
+                                                onChange={handleChange}
+                                                className="mb-2"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className="d-flex justify-content-around mt-2">
+                                            <Button href={profileData.socialMedia.linkedin} variant="primary" target="_blank">LinkedIn</Button>
+                                            <Button href={profileData.socialMedia.github} variant="dark" target="_blank">GitHub</Button>
+                                            <Button href={profileData.socialMedia.twitter} variant="info" target="_blank">Twitter</Button>
+                                        </div>
+                                    )}
                                 </ListGroup.Item>
                             </ListGroup>
+
+                            <div className="mt-3 d-flex justify-content-center">
+                                {isEditing ? (
+                                    <>
+                                        <Button variant="success" onClick={handleSave} className="me-2">Save</Button>
+                                        <Button variant="secondary" onClick={() => setIsEditing(false)}>Cancel</Button>
+                                    </>
+                                ) : (
+                                    <Button variant="primary" onClick={() => setIsEditing(true)}>Edit Profile</Button>
+                                )}
+                            </div>
                         </Card.Body>
                     </Card>
                 </Col>

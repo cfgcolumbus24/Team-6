@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../Components/Header';
 
 const Directory = () => {
-    const [directoryData, setDirectoryData] = useState([]); // Initialize state to hold directory data
+    const navigate = useNavigate();
+    const [directoryData, setDirectoryData] = useState([]);
 
+    // Check if the user is logged in
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/login');
+        }
+    }, [navigate]);
+
+    // Fetch users from the database
     useEffect(() => {
         const fetchDirectoryData = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/api/directory'); // Update with your API endpoint
-                setDirectoryData(response.data); // Assume the response is an array of users
+                const response = await axios.get('http://localhost:5001/api/users'); // Adjust the endpoint as needed
+                setDirectoryData(response.data.data);
             } catch (error) {
                 console.error('Error fetching directory data:', error);
             }
@@ -35,19 +44,28 @@ const Directory = () => {
                 </thead>
                 <tbody>
                     {directoryData.map((user) => (
-                        <tr key={user.id}>
+                        <tr key={user._id}>
                             <td>
-                                <Link to={`/profile/${user.username}`} className="text-decoration-none">
-                                    {user.name}
+                                <Link to={`/profile/${user._id}`} className="text-decoration-none">
+                                    {user.fname} {user.lname}
                                 </Link>
                             </td>
                             <td>{user.email}</td>
-                            <td>{user.phone}</td>
+                            <td>{user.phoneNumber}</td>
                             <td>{user.bio}</td>
                             <td>
-                                <a href={user.socialMediaLink} target="_blank" rel="noopener noreferrer">
-                                    {user.socialMediaLink}
-                                </a>
+                                {user.socialMedia ? (
+                                    <div>
+                                        {user.socialMedia.instagram && (
+                                            <a href={user.socialMedia.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+                                        )}
+                                        {user.socialMedia.facebook && (
+                                            <a href={user.socialMedia.facebook} target="_blank" rel="noopener noreferrer">Facebook</a>
+                                        )}
+                                    </div>
+                                ) : (
+                                    'N/A'
+                                )}
                             </td>
                         </tr>
                     ))}

@@ -5,6 +5,7 @@ import { Container, Row, Col, Form, Button, Modal } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Header from "../Components/Header";
+import { useNavigate } from 'react-router-dom';
 
 function Resources() {
   const [resources, setResources] = useState([]);
@@ -17,6 +18,21 @@ function Resources() {
     resourceContent: '',
     imageUrl: ''
   });
+  const navigate = useNavigate();
+
+  // Check if the user is logged in
+  const isLoggedIn = () => {
+    return localStorage.getItem("token") !== null;
+  };
+
+  // Handle create resource button click
+  const handleCreateButtonClick = () => {
+    if (isLoggedIn()) {
+      setShowCreateModal(true);
+    } else {
+      navigate('/login');
+    }
+  };
 
   // Fetch resources from the backend
   useEffect(() => {
@@ -53,7 +69,7 @@ function Resources() {
   return (
     <Container className="my-5">
       <h2 className="text-center mb-4">Resources</h2>
-      <Button className="mb-3" onClick={() => setShowCreateModal(true)}>Create New Resource</Button>
+      <Button className="mb-3" onClick={handleCreateButtonClick}>Create New Resource</Button>
       <Form.Control
         type="text"
         placeholder="Search by title..."

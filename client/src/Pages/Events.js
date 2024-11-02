@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import EventCard from '../Components/EventCard';
 import { Container, Row, Col, Form, Button, Modal } from 'react-bootstrap';
-import Header from '../Components/Header';
+import { useNavigate } from 'react-router-dom';
 
 function Events() {
   const [events, setEvents] = useState([]);
@@ -18,6 +18,21 @@ function Events() {
     eventLocation: '',
     eventOrganizer: ''
   });
+  const navigate = useNavigate();
+
+  // Check if the user is logged in
+  const isLoggedIn = () => {
+    return localStorage.getItem("token") !== null;
+  };
+
+  // Handle create event button click
+  const handleCreateButtonClick = () => {
+    if (isLoggedIn()) {
+      setShowCreateModal(true);
+    } else {
+      navigate('/login');
+    }
+  };
 
   // Fetch events from the backend
   useEffect(() => {
@@ -54,14 +69,16 @@ function Events() {
   return (
     <Container className="my-5">
       <h2 className="text-center mb-4">Upcoming Events</h2>
-      <Button className="mb-3" onClick={() => setShowCreateModal(true)}>Create New Event</Button>
-      <Form.Control
-        type="text"
-        placeholder="Search by title..."
-        className="mb-4"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <Button className="mb-3" onClick={handleCreateButtonClick}>Create New Event</Button>
+      <Form.Group controlId="searchTitle" className="mb-4">
+        <Form.Label>Search by Title</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter event title to search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </Form.Group>
       {filteredEvents.length > 0 ? (
         <Row>
           {filteredEvents.map((event) => (
@@ -71,7 +88,7 @@ function Events() {
                 title={event.eventTitle || 'Untitled Event'}
                 date={event.eventDate || 'Date Unavailable'}
                 description={event.eventDescription || 'No description available.'}
-                imageUrl={event.eventImage || 'https://via.placeholder.com/150'}
+                imageUrl={event.eventImage || 'https://picsum.photos/300/150'}
               />
             </Col>
           ))}
