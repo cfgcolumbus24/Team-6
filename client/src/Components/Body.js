@@ -6,15 +6,15 @@ import '../Body.css';
 function Body() {
   return (
     <div className="body-container">
-      {/* Welcome Section with Blue Overlay */}
+      {/* Welcome Section */}
       <Container fluid className="welcome-section text-center py-5 position-relative">
-        <div className="blue-overlay"></div>
         <div className="content">
-          <h1 className="display-4 fw-bold text-white">Welcome to the Alumni Network</h1>
-          <p className="lead text-white">
+          <h1 className="display-4 fw-bold text-black">Welcome to the Alumni Network</h1>
+          <p className="lead text-black">
             Join a vibrant community of alumni dedicated to making a positive impact. Stay connected, get involved, and continue your journey with us.
           </p>
-          <Button href="#call-to-action" className="custom-btn mt-3 shadow">Get Involved Today</Button>
+          {/* Link to Signup */}
+          <Button href="/register" className="custom-btn mt-3 shadow">Join the Alumni Network</Button>
         </div>
       </Container>
 
@@ -40,11 +40,10 @@ function Body() {
         </Row>
       </Container>
 
-      {/* Testimonials Section with Blue Overlay */}
+      {/* Alumni Testimonials Section */}
       <Container fluid className="testimonials-section text-center py-5 position-relative">
-        <div className="blue-overlay"></div>
         <div className="content">
-          <h2 className="fw-bold text-white">Alumni Testimonials</h2>
+          <h2 className="fw-bold text-black">Alumni Testimonials</h2>
           <Row className="g-4 mt-4 justify-content-center">
             {[
               { quote: "This network has connected me with incredible artists around the world.", name: "Emma Rivera, Painter" },
@@ -94,7 +93,7 @@ function Body() {
         <p className="text-muted mx-auto" style={{ maxWidth: '800px' }}>
           Be part of a network that inspires and supports you. Join us for events, mentorship, and opportunities to give back.
         </p>
-        <Button href="/join" className="custom-btn mt-3 shadow">Join the Alumni Network</Button>
+        <Button href="/register" className="custom-btn mt-3 shadow">Join the Alumni Network</Button>
         <Button href="/events" className="custom-btn mt-3 shadow mx-2">Explore Events</Button>
       </Container>
 
@@ -114,4 +113,5 @@ function Body() {
 }
 
 export default Body;
+
 

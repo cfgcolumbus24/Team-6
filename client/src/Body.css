@@ -1,60 +1,139 @@
-/* src/components/Body.css */
+/* src/Body.css */
 
-.body-container h1, .body-container h2 {
-    color: #007bff;
+/* General styling for the body container */
+.body-container {
+    background-color: #ffffff; /* White background for the whole page */
+    color: #000000; /* Default black text */
   }
   
+  /* Welcome Section Styling */
+  .welcome-section {
+    background-color: #ffffff; /* White background */
+    color: #000000 !important; /* Ensures all text within this section is black */
+    position: relative;
+    padding: 60px 0;
+    border-bottom: 3px solid #e9f7fe; /* Light blue border at the bottom */
+  }
+  
+  .welcome-section .content h1 {
+    color: #000000 !important; /* Black title */
+  }
+  
+  .welcome-section .content p {
+    color: #000000 !important; /* Ensures this paragraph text is black */
+  }
+  
+  /* Light Blue Button Styling */
   .custom-btn {
-    border-radius: 20px;
-    padding: 10px 20px;
-    font-weight: 500;
-  }
-  
-  .welcome-section, .testimonials-section {
-    position: relative;
+    background-color: #6cb2eb; /* Light blue button color */
     color: white;
-    overflow: hidden;
+    border: 2px solid #5aa2d6; /* Border for added emphasis */
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
   }
   
-  .blue-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 123, 255, 0.75); /* Blue overlay with transparency */
-    z-index: 1;
+  .custom-btn:hover {
+    background-color: #5aa2d6; /* Slightly darker shade on hover */
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Alumni Testimonials Section Styling */
+  .testimonials-section {
+    background-color: #f7fafc; /* Light blue undertone for section */
+    color: #000000;
+    padding: 60px 0;
+    border-top: 3px solid #e9f7fe; /* Light blue top border */
+    border-bottom: 3px solid #e9f7fe; /* Light blue bottom border */
+  }
+  
+  /* Ensuring "Alumni Testimonials" title is black */
+  .testimonials-section .content h2 {
+    color: #000000 !important; /* Black color with !important to enforce it */
+  }
+  
+  /* Testimonials Card Styling */
+  .testimonial-card {
+    background-color: #ffffff; /* White background for cards */
+    color: #000000; /* Black text for readability */
     border-radius: 10px;
-  }
-  
-  .content {
-    position: relative;
-    z-index: 2;
-  }
-  
-  .impact-card, .testimonial-card, .alumni-card {
-    border: none;
     padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0; /* Light gray border */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05); /* Soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
-  .impact-card:hover, .testimonial-card:hover, .alumni-card:hover {
-    transform: scale(1.05);
+  .testimonial-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow on hover */
   }
   
-  .testimonial-card p {
-    font-style: italic;
-    color: #6c757d;
+  /* Impact Section Styling */
+  .impact-section {
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+    padding: 60px 0;
+  }
+  
+  .impact-card {
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0; /* Light gray border */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .impact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Call to Action Section */
+  .call-to-action-section {
+    background-color: #f7fafc; /* Light blue undertone */
+    color: #000000; /* Black text */
+    padding: 60px 0;
+  }
+  
+  .call-to-action-section h2,
+  .call-to-action-section p {
+    color: #000000; /* Ensuring black text */
   }
   
   .newsletter-form input[type="email"] {
-    border-radius: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
     padding: 10px;
+    color: #000000;
   }
   
-  .hover-scale:hover {
-    transform: scale(1.05);
+  /* Button Styling */
+  .custom-btn {
+    background-color: #6cb2eb; /* Light blue button */
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
   }
+  
+  .custom-btn:hover {
+    background-color: #5aa2d6;
+  }
+  
+  /* Section Titles */
+  h2 {
+    color: #000000;
+    font-weight: bold;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #6cb2eb; /* Light blue underline effect */
+  }
+  
+  /* Centered Rows with Left-Aligned Text */
+  .text-center {
+    text-align: center;
+    color: #000000;
+  }
+  
   
