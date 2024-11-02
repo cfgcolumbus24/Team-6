@@ -1,3 +1,5 @@
+// src/App.js
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
@@ -6,9 +8,14 @@ import Resource from './Pages/Resource';
 import Events from './Pages/Events';
 import Event from './Pages/Event';
 import Homepage from './Pages/Homepage';
-import Directory from './Pages/Directory';
+import About from './Pages/About';
+
+import Header from './Components/Header';
+import Footer from './Components/Footer';
 
 const App = () => (
+  <>
+    <Header />
     <Router>
         <Routes>
             <Route path="/" element={<Homepage />} />
@@ -18,9 +25,12 @@ const App = () => (
             <Route path="/resources" element={<Resources />} />
             <Route path="/event/:id" element={<Event />} />
             <Route path="/resource/:id" element={<Resource />} />
-            <Route path="/directory" element={<Directory />} />
+            <Route path="/about" element={<About />} /> {/* Add the About route */}
         </Routes>
     </Router>
+    <Footer />
+    </>
 );
 
 export default App;
+

@@ -60,7 +60,6 @@ const Directory = () => {
     return (
     
         <Container className="my-5">
-            < Header />
             <h2 className="text-center mb-4">User Directory</h2>
             <Table striped bordered hover responsive>
                 <thead>

@@ -31,7 +31,6 @@ function Resources() {
 
   return (
     <Container className="my-5">
-      < Header />
       <h2 className="text-center mb-4">Resources</h2>
       <Form.Control
         type="text"

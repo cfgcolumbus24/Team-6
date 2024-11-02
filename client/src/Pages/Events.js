@@ -34,7 +34,6 @@ function Events() {
 
   return (
     <Container className="my-5">
-      < Header />
       <h2 className="text-center mb-4">Upcoming Events</h2>
       <Row>
         {filteredEvents.length > 0 ? (
