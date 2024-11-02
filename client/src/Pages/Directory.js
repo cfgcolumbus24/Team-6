@@ -4,6 +4,7 @@ import { Table, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../Components/Header';
+import Chatbot from '../Components/Chatbot';
 
 const Directory = () => {
     const navigate = useNavigate();
@@ -71,6 +72,8 @@ const Directory = () => {
                     ))}
                 </tbody>
             </Table>
+            {/* Chatbot Component */}
+            <Chatbot />
         </Container>
     );
 };
