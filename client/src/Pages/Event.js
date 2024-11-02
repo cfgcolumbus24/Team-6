@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Card } from 'react-bootstrap';
+import Header from '../Components/Header';
 
 // Mock data (replace with real data fetching logic if needed)
 const eventsData = [
@@ -37,6 +38,7 @@ function Event() {
 
   return (
     <Container className="my-5">
+      < Header />
       <Card>
         <Card.Img variant="top" src={event.imageUrl} />
         <Card.Body>
